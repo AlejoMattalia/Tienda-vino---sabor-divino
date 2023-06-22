@@ -1,0 +1,55 @@
+@import "../../../../../App.css";
+
+.container-search{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-search div{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    transition: transform 2s;
+}
+
+.container-search div input{
+    border: #5c5c5c 2px solid;
+    padding: 10px;
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    border-right: none;
+}
+
+.searchIcon{
+    cursor: pointer;
+    color: var(--textColor);
+    padding: 10px;
+    background-color: var(--mainColor);
+    border-radius: 0 10px 10px 0;
+}
+
+/* Transicion */
+.classActive{
+    transform: translateY(100px);
+    transition: transform 2s;
+}
+
+
+
+@media (max-width: 600px) {
+    .container-search div{
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .container-search div{
+        width: 90%;
+    }
+}

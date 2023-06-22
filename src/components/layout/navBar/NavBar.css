@@ -1,0 +1,103 @@
+@import "../../../App.css";
+
+.icon:hover {
+    color: var(--mainColor);
+}
+
+.containerNavBar {
+    z-index: 1000;
+    position: relative;
+    width: 100%;
+    background-color: hsl(0, 0%, 10%);
+    display: flex;
+    flex-direction: column;
+}
+
+.containerNavBar nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.containerNavBar nav ul {
+    position: relative;
+    top: 15px;
+    right: 150px;
+    display: flex;
+    gap: 30px;
+}
+
+.containerNavBar nav ul li {
+    list-style-type: none;
+}
+
+.containerNavBar nav ul li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--textColor);
+    transition: .2s;
+}
+
+.containerNavBar nav ul li a:hover {
+    border-bottom: 2px solid var(--mainColor);
+
+}
+
+.active {
+    position: relative;
+    bottom: 10px;
+    font-size: 25px !important;
+    color: var(--mainColor) !important;
+    border-bottom: 2px solid var(--mainColor);
+}
+
+.iconMenu {
+    display: none !important;
+}
+
+
+@media (max-width: 1000px) {
+    .containerNavBar nav ul {
+        right: 80px;
+    }
+}
+
+@media (max-width: 850px) {
+    .iconMenu {
+        display: inline-block !important;
+    }
+
+    .containerNavBar nav {
+        width: 100%;
+    }
+
+    .containerNavBar nav ul {
+        position: relative;
+        top: 90px;
+        right: 0;
+        left: -100%;
+        position: fixed;
+        width: 100%;
+        height: 100vh;    
+        background-color: hsl(0, 0%, 15%);
+        z-index: 100;
+        transition: all 1s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+    }
+
+    .containerNavBar nav ul li a{
+        font-size: 23px;
+    }
+
+    .active{
+        font-size: 40px !important;
+    }
+
+    .classUl{
+        position: relative;
+        left: 0 !important;
+    }
+}
