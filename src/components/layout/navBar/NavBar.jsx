@@ -5,51 +5,60 @@ import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 import { Search } from "./elementsNavBar/search/Search";
+import { Dropdown } from "./elementsNavBar/dropdown/Dropdown.jsx";
 
 export function NavBar({
-  classActive,
+  classActiveSearch,
   toggleSearch,
   classUl,
   toggleMenu,
   menuOpen,
   toggleIcon,
+  classLi,
+  handleLiClick
 }) {
   return (
     <>
       <header className="containerNavBar">
         <nav>
+
+          {/* Logo */}
           <img
             src="https://res.cloudinary.com/dp0zorgdp/image/upload/v1687406836/Pagina%20de%20vinos/SABOR__2_-removebg-preview_dqjnox.png"
             alt="Logo"
             style={{ width: "90px" }}
           />
 
+          {/* Listado de paginas */}
           <ul className={classUl}>
             <li>
-              <a href="" className="active">
-                Home
+              <a href="" className="list-pages-active">
+                Inicio
               </a>
             </li>
             <li>
-              <a href="">Home</a>
+                <Dropdown handleLiClick={handleLiClick}/>
             </li>
-            <li>
-              <a href="">Home</a>
+            <li className={classLi}>
+              <a href="" className="list-pages">Blog</a>
             </li>
-            <li>
-              <a href="">Home</a>
+            <li className={classLi}>
+              <a href="" className="list-pages">Comentarios</a>
             </li>
-            <li>
-              <a href="">Home</a>
+            <li className={classLi}>
+              <a href="" className="list-pages">Contacto</a>
             </li>
           </ul>
 
           <div>
+            {/* Icono del buscador */}
             <SearchIcon
               onClick={toggleSearch}
               sx={{ color: "#fff", cursor: "pointer", fontSize: "30px" }}
               className="icon"
             />
+
+            {/* Icono del carrito */}
             <Badge
               badgeContent={4}
               color="error"
@@ -61,14 +70,19 @@ export function NavBar({
               />
             </Badge>
 
-            <div onClick={toggleIcon} style={{display: "inline-block"}}>
+
+            {/* Iconos del menu desplegable cuando la pagina sea menor a 850px */}
+            <div onClick={toggleIcon} style={{ display: "inline-block" }}>
+              {/* Si se abre el menu, se muestra el icono equis */}
               {menuOpen ? (
                 <CloseIcon
                   onClick={toggleMenu}
                   sx={{ color: "#fff", cursor: "pointer", fontSize: "30px" }}
                   className="icon iconMenu"
                 />
-              ) : (
+              ) 
+              // Si se cierra el menu, se muestra el icono del menu hamburguesa
+              : (  
                 <MenuIcon
                   onClick={toggleMenu}
                   sx={{ color: "#fff", cursor: "pointer", fontSize: "30px" }}
@@ -80,7 +94,8 @@ export function NavBar({
         </nav>
       </header>
 
-      <Search classActive={classActive} />
+      {/* Buscador */}
+      <Search classActiveSearch={classActiveSearch} />
     </>
   );
 }

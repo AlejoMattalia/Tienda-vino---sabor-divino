@@ -1,0 +1,32 @@
+@import "../../../../../App.css";
+
+.dropDown-title{
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--textColor);
+    position: relative;
+    top: 2px;
+}
+
+.dropDown-title:hover {
+    color: var(--mainColor);
+    border-bottom: 2px solid var(--mainColor);
+    width: 50%;
+}
+
+.item-dropDown{
+    border: none;
+    color: #000;
+}
+
+.dropdown-menu show{
+    width: 10px !important;
+}
+
+
+@media (max-width: 850px) {
+    .dropdown-item{
+        font-size: 15px !important;
+    }
+}
+

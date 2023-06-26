@@ -10,6 +10,7 @@
 }
 
 .container-search div{
+    z-index: 100;
     display: flex;
     align-items: center;
     width: 60%;
@@ -19,7 +20,7 @@
 .container-search div input{
     border: #5c5c5c 2px solid;
     padding: 10px;
-    height: 45px;
+    height: 48px;
     width: 100%;
     outline: none;
     border-radius: 10px 0 0 10px;
