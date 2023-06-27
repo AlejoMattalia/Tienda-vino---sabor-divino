@@ -1,0 +1,52 @@
+@import "../../../App.css";
+
+.grid-container {
+    padding: 30px 20px 50px 20px;
+    background: hsl(0, 0%, 12%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #2e2e2e;
+}
+
+.grid-item {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    gap: 15px;
+}
+
+.grid-item p {
+    color: var(--textColor);
+}
+
+.grid-item a {
+    color: var(--mainColor);
+    font-size: 12px;
+    position: relative;
+    bottom: 18px;
+    left: 5px;
+}
+
+.icon-grid {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+}
+
+.icon-grid:hover {
+    color: var(--mainColor);
+}
+
+
+@media (max-width: 600px) {
+    .commentIcon{
+        position: relative;
+        right: 18px;
+    }
+
+    .productionIcon{
+        position: relative;
+        right: 10px;
+    }
+}

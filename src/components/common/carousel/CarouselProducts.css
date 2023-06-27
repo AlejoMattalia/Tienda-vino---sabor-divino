@@ -1,0 +1,16 @@
+@import "../../../App.css";
+
+.container-carousel{
+    background-color: hsl(0, 0%, 8%);
+    position: relative;
+}
+
+.title-carousel{
+    color: var(--textColor);
+    position: relative;
+    top: 40px;
+    padding-left: 50px;
+    letter-spacing: 4px;
+    font-weight: 900;
+}
+

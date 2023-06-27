@@ -1,0 +1,109 @@
+@import "../../../App.css";
+
+.container-card{
+    margin: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 4px 0 rgba(80, 80, 80, 0.2);
+    max-width: 280px;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.container-card div{
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    top: 10px;
+    padding-bottom: 10px;
+}
+
+.container-card img{
+    width: 200px;
+    height: 200px;
+}   
+
+.container-card h3{
+    font-size: 15px;
+    width: 75%;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.container-card p{
+    position: relative;
+    top: 20px;
+    color: #000;
+}
+
+.container-card button{
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    color: var(--textColor);
+    background-color: var(--mainColor);
+}
+
+.container-card button:hover{
+    background-color: #c59416;
+}
+
+
+
+@media (max-width: 600px) {
+
+    .container-card{
+        position: relative;
+        left: 100px;
+    }
+}
+
+@media (max-width: 540px) {
+
+    .container-card{
+        position: relative;
+        left: 70px;
+    }
+}
+
+@media (max-width: 490px) {
+
+    .container-card{
+        position: relative;
+        left: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .container-card{
+        position: relative;
+        left: 25px;
+    }
+}
+
+@media (max-width: 415px) {
+
+    .container-card{
+        position: relative;
+        left: 5px;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .container-card{
+        position: relative;
+        left: 0;
+    }
+}

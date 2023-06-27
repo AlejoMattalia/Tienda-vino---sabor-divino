@@ -21,9 +21,15 @@
 
 .buttons-links{
     margin: 20px 40px;
-    padding: 15px;
     background: none;
     border: 2px solid var(--mainColor);
+}
+
+.vinos{
+    padding: 15px 25px;
+}
+.combos{
+    padding: 15px;
 }
 
 .buttons-links a{
@@ -47,6 +53,12 @@
 
     .buttons-links{
         margin: 20px 30px;
+    }
+
+    .vinos{
+        padding: 10px 20px;
+    }
+    .combos{
         padding: 10px;
     }
 }
