@@ -98,6 +98,8 @@
 
     .containerNavBar nav ul li a{
         font-size: 23px;
+        /* position: relative;
+        right: 15px; */
     }
 
     .active{

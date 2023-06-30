@@ -1,28 +1,21 @@
 import {useState, useEffect} from "react";
-import jsonData from "../products.json";
 
 
-export function useFetch() {
+export function useFetch(url) {
 
     const [data, setData] = useState(null);
-    const [error, setError] = useState("")
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
-      const items = new Promise((resolve, reject) => {
-        try{
-            resolve(jsonData)
-        } 
-        catch {
-            reject("error")
-        }
+      setLoading(true);
 
-      });
-  
-      items
-      .then((res) => setData(res))
-      .catch((err) => setError(err))
-    }, [])
+      fetch(url)
+       .then((res)=> res.json())
+       .then((res) => setData(res))
+       .catch((err) => setError(err))
+       .finally(()=> setLoading(false))
+    }, [url])
 
-  
-  return {data, error}
+  return {data, loading, error}
 }

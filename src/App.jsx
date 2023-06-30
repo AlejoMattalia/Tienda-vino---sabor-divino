@@ -2,7 +2,9 @@ import "./App.css";
 import { NavBarContainer } from "./components/layout/navBar/NavBarContainer";
 import { Footer } from "./components/layout/footer/Footer";
 import { Home } from "./components/pages/home/Home";
+import {Login} from "./components/pages/sectionLogin/Login.jsx";
 import { useState, useEffect } from "react";
+import { Register } from "./components/pages/sectionLogin/Register";
 function App() {
   //Cuando se haga click en el menu, dar un valor de overflow: "hidden" o "auto" al :root para que la pagina cuando el menu este abiero no se pueda hacer scroll
   const [isClickOverflow, setIsClickOverflow] = useState(false);
@@ -29,7 +31,13 @@ function App() {
         widthPage={widthPage}
       />
       <Home />
+      <Login/>
+      <Register/>
       <Footer />
+
+
+
+
 
       <style>
         {`

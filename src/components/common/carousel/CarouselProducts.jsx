@@ -29,8 +29,6 @@ export function CarouselProducts({ title, array }) {
     },
   };
 
-
-  console.log(array)
   return (
     <div className="container-carousel">
       <h3 className="title-carousel">{title}</h3>
@@ -39,8 +37,10 @@ export function CarouselProducts({ title, array }) {
         {
           array !== undefined &&
           array.map((el)=>{
+            const formattedPrice = el.price.toLocaleString();
+
             return(
-              <Card key={el.id} title={el.name} price={el.price} image={el.img}/>
+              <Card key={el.id} title={el.name} price={formattedPrice} image={el.img}/>
             )
           })
         }

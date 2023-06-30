@@ -1,0 +1,164 @@
+@import "../../../../App.css";
+
+.container-global-register {
+    background-color: black;
+    height: 110vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+h2 {
+    font-size: 45px;
+    position: relative;
+    right: 50px;
+    bottom: 20px;
+    color: var(--mainColor);
+    border-bottom: 2px solid var(--mainColor);
+}
+
+.image {
+    position: relative;
+    right: 50px;
+    width: 400px;
+    height: 400px;
+    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.8);
+}
+
+.container-register {
+    position: relative;
+    right: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    background-color: #0f0f0f;
+    min-width: 300px;
+    min-height: 500px;
+    box-shadow: 0 0 3px 3px rgba(255, 255, 255, 0.8);
+}
+
+.container-header-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-header-card p {
+    color: var(--textColor);
+    font-size: 30px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 20px;
+}
+
+.button-register {
+    border-radius: 100px !important;
+    background: var(--mainColor) !important;
+}
+
+.container-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+    background-color: var(--mainColor);
+}
+
+.iconUser {
+    color: var(--textColor);
+    font-size: 80px !important;
+}
+
+.confirmAccount {
+    font-size: 12px;
+    color: var(--textColor);
+}
+
+.confirmAccount a {
+    cursor: pointer;
+    color: var(--mainColor) !important;
+    font-size: 14px;
+}
+
+.confirmAccount a:hover {
+    border-bottom: 1px solid var(--mainColor);
+}
+
+
+/* INPUTS */
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+    font-size: 15px !important;
+    color: var(--textColor) !important;
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: var(--textColor) !important;
+}
+
+.css-v4u5dn-MuiInputBase-root-MuiInput-root::after {
+    border-bottom: 2px solid var(--textColor) !important;
+
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+    color: var(--textColor) !important;
+}
+
+.css-1x51dt5-MuiInputBase-input-MuiInput-input {
+    color: #fff !important;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 950px) {
+
+    h2 {
+        display: none;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .container-global-register {
+        justify-content: center;
+    }
+
+    .container-register {
+        right: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container-register {
+        width: 100px;
+    }
+
+    .container-header-card p {
+        font-size: 23px;
+    }
+
+    .container-icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .iconUser {
+        font-size: 60px !important;
+    }
+}
