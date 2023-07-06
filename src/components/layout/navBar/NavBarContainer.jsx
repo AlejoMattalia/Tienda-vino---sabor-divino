@@ -1,39 +1,56 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavBar } from "./NavBar";
+import { ConfigContext } from "../../../context/ConfigContext";
 
-export function NavBarContainer( {isClickOverflow, setIsClickOverflow, widthPage} ) {
-
+export function NavBarContainer() {
   const [classActiveSearch, setClassActiveSearch] = useState("");
   const [classUl, setClassUl] = useState("");
   const [menuOpnen, setMenuOpnen] = useState(false);
   const [classLi, setClassLi] = useState("");
-  
+  const [input, setInput] = useState("");
 
-  // Función para mostrar o ocultar el buscador 
-  const toggleSearch = ()=> {
-    classActiveSearch==="" ? setClassActiveSearch("classActive") : setClassActiveSearch("")
-  }
+
+  const {widthPage, isClickOverflow, setIsClickOverflow} = useContext(ConfigContext);
+
+  // Función para mostrar o ocultar el buscador
+  const toggleSearch = () => {
+    classActiveSearch === ""
+      ? setClassActiveSearch("classActive")
+      : setClassActiveSearch("");
+    setInput("");
+  };
 
   //función para abrir o cerrar el menu cuando la pagina sea menor a 850px
-  const toggleMenu = ()=> {
+  const toggleMenu = () => {
     classUl === "" ? setClassUl("classUl") : setClassUl("");
     setIsClickOverflow(!isClickOverflow);
-  }
+  };
 
   //Función para cambiar el icono de la pantalla
   const toggleIcon = () => {
     //MenuOpen funciona como condicion, cuando es true se muestra el icono equis, si es falso se muestra el menu hamburguesa
-    setMenuOpnen(!menuOpnen)
-  }
+    setMenuOpnen(!menuOpnen);
+  };
 
   //Función para que cuando se de click en la seccion catalogo y se muestren la opciones(combos, vinos), Los otros elementos li(blog, comentarios, contactos) se muevan 65px hacia abajo, cuando la pagina sea menor a 850px
-  const handleLiClick = ()=> {
-    if(widthPage < 851){
+  const handleLiClick = () => {
+    if (widthPage < 851) {
       classLi === "" ? setClassLi("handle-li") : setClassLi("");
     }
-  }
+  };
 
   return (
-    <NavBar toggleSearch={toggleSearch} classActiveSearch={classActiveSearch} classUl={classUl} toggleMenu={toggleMenu} menuOpen={menuOpnen} toggleIcon={toggleIcon} classLi={classLi} handleLiClick={handleLiClick}/>
-  )
+    <NavBar
+      toggleSearch={toggleSearch}
+      classActiveSearch={classActiveSearch}
+      classUl={classUl}
+      toggleMenu={toggleMenu}
+      menuOpen={menuOpnen}
+      toggleIcon={toggleIcon}
+      classLi={classLi}
+      handleLiClick={handleLiClick}
+      input={input}
+      setInput={setInput}
+    />
+  );
 }

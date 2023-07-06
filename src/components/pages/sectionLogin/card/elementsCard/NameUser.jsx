@@ -5,6 +5,8 @@ import {
 } from "@mui/material";
 
 export function NameUser({ onChange, values, errors, helperText }) {
+
+  //Input sobre el nombre de usuario
   return (
     <FormControl sx={{ m: 1, width: "25ch" }}>
       <TextField

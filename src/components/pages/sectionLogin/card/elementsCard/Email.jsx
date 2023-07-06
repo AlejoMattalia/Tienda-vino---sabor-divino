@@ -1,6 +1,8 @@
 import { FormControl, InputAdornment, TextField } from "@mui/material";
 
 export function Email({ onChange, values, errors, helperText }) {
+
+  //Input sobre el email
   return (
     <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
       <TextField

@@ -1,7 +1,22 @@
 {
-    "users": [
-        {
-            "name": "Alejo"
-        }
-    ]
+  "users": [
+    {
+      "name": "AlejoMattalia",
+      "email": "aleacade.mattalia@gmail.com",
+      "password": "Lola11tita",
+      "id": 1
+    },
+    {
+      "name": "wefewfewfewf",
+      "email": "wdijidc@gmail.com",
+      "password": "LO943F",
+      "id": 2
+    },
+    {
+      "name": "Pedro",
+      "email": "perdro123@gmail.com",
+      "password": ")L9jsah3",
+      "id": 3
+    }
+  ]
 }

@@ -6,6 +6,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge } from "@mui/material";
 import { Search } from "./elementsNavBar/search/Search";
 import { Dropdown } from "./elementsNavBar/dropdown/Dropdown.jsx";
+import {UserIcon} from "./elementsNavBar/userIcon/UserIcon.jsx"
+import { Link } from "react-router-dom";
 
 export function NavBar({
   classActiveSearch,
@@ -15,13 +17,14 @@ export function NavBar({
   menuOpen,
   toggleIcon,
   classLi,
-  handleLiClick
+  handleLiClick,
+  input,
+  setInput,
 }) {
   return (
     <>
       <header className="containerNavBar">
         <nav>
-
           {/* Logo */}
           <img
             src="https://res.cloudinary.com/dp0zorgdp/image/upload/v1687406836/Pagina%20de%20vinos/SABOR__2_-removebg-preview_dqjnox.png"
@@ -32,21 +35,27 @@ export function NavBar({
           {/* Listado de paginas */}
           <ul className={classUl}>
             <li>
-              <a href="" className="list-pages-active">
+              <Link to={"/"} className="list-pages-active">
                 Inicio
-              </a>
+              </Link>
             </li>
             <li>
-                <Dropdown handleLiClick={handleLiClick}/>
+              <Dropdown handleLiClick={handleLiClick} />
             </li>
             <li className={classLi}>
-              <a href="" className="list-pages">Blog</a>
+              <a href="" className="list-pages">
+                Blog
+              </a>
             </li>
             <li className={classLi}>
-              <a href="" className="list-pages">Comentarios</a>
+              <a href="" className="list-pages">
+                Comentarios
+              </a>
             </li>
             <li className={classLi}>
-              <a href="" className="list-pages">Contacto</a>
+              <a href="" className="list-pages">
+                Contacto
+              </a>
             </li>
           </ul>
 
@@ -70,6 +79,7 @@ export function NavBar({
               />
             </Badge>
 
+            <UserIcon/>
 
             {/* Iconos del menu desplegable cuando la pagina sea menor a 850px */}
             <div onClick={toggleIcon} style={{ display: "inline-block" }}>
@@ -80,9 +90,8 @@ export function NavBar({
                   sx={{ color: "#fff", cursor: "pointer", fontSize: "30px" }}
                   className="icon iconMenu"
                 />
-              ) 
-              // Si se cierra el menu, se muestra el icono del menu hamburguesa
-              : (  
+              ) : (
+                // Si se cierra el menu, se muestra el icono del menu hamburguesa
                 <MenuIcon
                   onClick={toggleMenu}
                   sx={{ color: "#fff", cursor: "pointer", fontSize: "30px" }}
@@ -95,7 +104,11 @@ export function NavBar({
       </header>
 
       {/* Buscador */}
-      <Search classActiveSearch={classActiveSearch} />
+      <Search
+        classActiveSearch={classActiveSearch}
+        input={input}
+        setInput={setInput}
+      />
     </>
   );
 }

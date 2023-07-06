@@ -5,8 +5,7 @@ import {
 
 export function Password({ onChange, values, errors, helperText }) {
 
-  
-
+  //Input sobre la contraseña
   return (
     <FormControl sx={{ m: 1, width: "25ch" }} variant="standard">
       <TextField

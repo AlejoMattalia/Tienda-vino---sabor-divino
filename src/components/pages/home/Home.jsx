@@ -1,34 +1,35 @@
 import { Mask } from "./mask/Mask.jsx";
 import { CarouselProducts } from "../../common/carousel/CarouselProducts.jsx";
 import { CompanyInfo } from "../../common/companyInfo/CompanyInfo.jsx";
-import { useFetch } from "../../../hooks/useFetch.js";
 import { Error } from "../../layout/Error.jsx";
 import { Loading } from "../../layout/Loading.jsx";
+import { useAxios } from "../../../hooks/useAxios.js";
 
 export function Home() {
-  let combos, vinosTintos;
-
-  const { data, loading, error } = useFetch("dbProducts.json");
-
-  if (data != null) {
-    combos = data.combos;
-    vinosTintos = data.vinos.tintos
-  }
+  const {
+    data: dataCombos,
+    loading,
+    error,
+  } = useAxios("http://localhost:3000/combos");
+  const { data: dataVinos } = useAxios("http://localhost:3000/vinos");
 
   return (
     <>
-      {!error && !loading &&(
+      {/* Confirmar si los productos estan, sino mostrar cargando o directamente el error */}
+      {!error && !loading && (
         <>
           <Mask />
-          <CarouselProducts title="COMBOS" array={combos} />
+          <CarouselProducts title="COMBOS" array={dataCombos} />
           <CompanyInfo />
-          <CarouselProducts title="VINOS TINTOS" array={vinosTintos} />
+          {dataVinos !== null && (
+            <CarouselProducts title="VINOS TINTOS" array={dataVinos.tintos} />
+          )}
           <div style={{ border: "2px solid #2e2e2e" }}></div>
-          <CarouselProducts title="VINOS BLANCOS" array={combos} />
+          {/* <CarouselProducts title="VINOS BLANCOS" array={combos} /> */}
         </>
       )}
       {error && <Error />}
-      {loading && <Loading/>}
+      {loading && <Loading />}
     </>
   );
 }

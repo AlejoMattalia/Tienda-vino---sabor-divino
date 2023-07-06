@@ -1,6 +1,9 @@
 import "./Card.css";
 
 export function Card({ title, image, price }) {
+
+  // Diseño de las card
+
   return (
     <div className="container-card text-center">
       <img src={image} alt="" />

@@ -1,42 +1,33 @@
 import "./App.css";
-import { NavBarContainer } from "./components/layout/navBar/NavBarContainer";
-import { Footer } from "./components/layout/footer/Footer";
 import { Home } from "./components/pages/home/Home";
-import {Login} from "./components/pages/sectionLogin/Login.jsx";
-import { useState, useEffect } from "react";
+import { Login } from "./components/pages/sectionLogin/Login.jsx";
 import { Register } from "./components/pages/sectionLogin/Register";
+import { AuthContextProvider } from "./context/AuthContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Layout } from "./components/layout/Layout";
+import { useContext } from "react";
+import { ConfigContext } from "./context/ConfigContext";
+
 function App() {
-  //Cuando se haga click en el menu, dar un valor de overflow: "hidden" o "auto" al :root para que la pagina cuando el menu este abiero no se pueda hacer scroll
-  const [isClickOverflow, setIsClickOverflow] = useState(false);
-
-  //Obtener el ancho de la pagina
-  const [widthPage, setWidthPage] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWidthPage(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { widthPage, isClickOverflow } = useContext(ConfigContext);
 
   return (
     <>
-      <NavBarContainer
-        isClickOverflow={isClickOverflow}
-        setIsClickOverflow={setIsClickOverflow}
-        widthPage={widthPage}
-      />
-      <Home />
-      <Login/>
-      <Register/>
-      <Footer />
+      <AuthContextProvider>
+        <BrowserRouter>
+          <Routes>
 
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
 
-
+            <Route path="*" element={<h1>404 Found</h1>} />
+            
+          </Routes>
+        </BrowserRouter>
+      </AuthContextProvider>
 
 
       <style>

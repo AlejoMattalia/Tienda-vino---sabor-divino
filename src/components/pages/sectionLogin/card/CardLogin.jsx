@@ -6,14 +6,26 @@ import { Button } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
-export function CardLogin({ titleCard, textBotton, viewEmail, confirmAccount, submitForm, validateEmail }) {
+export function CardLogin({
+  titleCard,
+  textBotton,
+  viewEmail,
+  confirmAccount,
+  submitForm,
+  validateEmail
+}) {
+
+  //Valor iniciar del usuario
   const valueInitial = {
     name: "",
     email: "",
     password: "",
   };
 
+
+  //Validaciones
   const { handleSubmit, handleChange, errors, values } = useFormik({
     initialValues: valueInitial,
 
@@ -21,16 +33,16 @@ export function CardLogin({ titleCard, textBotton, viewEmail, confirmAccount, su
       name: Yup.string()
         .required("Debes ingresar un nombre de usuario")
         .min(5, "El nombre debe tener al menos 5 caracteres")
-        .max(20, "El nombre debe tener menos de 20 caracteres"),
+        .max(16, "El nombre debe tener menos de 16 caracteres"),
 
-
-      email: validateEmail &&
+      email:
+        validateEmail &&
         Yup.string()
-        .required("Debes ingresar un email")
-        .matches(
-          /^.+@.+\..+$/,
-          'El correo electrónico debe tener un símbolo "@"'
-        ),
+          .required("Debes ingresar un email")
+          .matches(
+            /^.+@.+\..+$/,
+            'El correo electrónico debe tener un símbolo "@"'
+          ),
 
       password: Yup.string()
         .required("Debes ingresar una contraseña")
@@ -97,10 +109,26 @@ export function CardLogin({ titleCard, textBotton, viewEmail, confirmAccount, su
         <Button className="button-register" variant="contained" type="submit">
           {textBotton}
         </Button>
-
-        {confirmAccount ? <p className="confirmAccount">Si ya tenes una cuenta, <a>Inicia Sesión</a></p> 
-                        : <p className="confirmAccount">Si no tenes una cuenta, <a>Registrate</a></p>}
+        
+        {/* Se muestra este mensaje cuando el usuario ya tiene una cuenta y tiene que iniciar sesión */}
+        {confirmAccount ? (
+          <Link to={"/login"}>
+            <p className="confirmAccount">
+              Si ya tenes una cuenta, <a>Inicia Sesión</a>
+            </p>
+          </Link>
+        ) : 
+        
+        //Se muestra este mensaje cuando el usuario no tiene cuanta y tiene que registrarse
+        (
+          <Link to={"/register"}>
+            <p className="confirmAccount">
+              Si no tenes una cuenta, <a>Registrate</a>
+            </p>
+          </Link>
+        )}
       </form>
+
     </section>
   );
 }
