@@ -7,13 +7,14 @@ import { ModalBuyCheck } from "./elementsConfirmBuy/ModalBuyCheck";
 
 export function ConfirmBuy() {
   const { confirmLogin } = useContext(AuthContext);
-  const { setModalShow, modalShow, verifyProductCart } =
+  const { setCart, setModalShow, modalShow, verifyProductCart } =
     useContext(CartContext);
   const [modalShowBuyCheck, setModalShowBuyCheck] = useState(false)  
 
   const handleCloseModals = ()=>{
     setModalShowBuyCheck(false);
-    setModalShow(false)
+    setModalShow(false);
+    setCart([]);
   }
 
   return (

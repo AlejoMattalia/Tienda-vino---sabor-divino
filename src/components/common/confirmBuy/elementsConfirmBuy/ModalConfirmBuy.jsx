@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
+import { CartContext } from "../../../../context/CartContext";
 
 export function ModalConfirmBuy(props) {
-    
+  const { totalProducts } = useContext(CartContext);
+  
   return (
     <Modal
       {...props}
@@ -29,7 +32,7 @@ export function ModalConfirmBuy(props) {
         <h4
           style={{ color: "#fff", textAlign: "center", marginBottom: "30px" }}
         >
-          ¿Confirmar Compra?
+          ¿Confirmar Compra a ${totalProducts.toLocaleString()} ARS?
         </h4>
       </Modal.Body>
       <Modal.Footer style={{ background: "hsl(0, 0%, 8%)",display: "flex", alignItems: "center", justifyContent: "space-evenly"}}>

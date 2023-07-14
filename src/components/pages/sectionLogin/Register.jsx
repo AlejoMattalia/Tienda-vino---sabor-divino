@@ -4,15 +4,45 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css";
-
+import {useAxios} from "../../../hooks/useAxios.js"
 
 export function Register() {
   const [confirmRegister, setConfirmRegister] = useState(false);
 
+  const {data: dataUsers} = useAxios("http://localhost:4000/users");
+
+  const [emailVerify, setEmailVerify] = useState(false);
+  const [nameUserVerify, setNameUserVerify] = useState(true); 
+  const [timeMessage, setTimeMessage] = useState(false);
+
+
+
   const handleSubmitForm = (data) => {
-    //Enviar los datos al servidor
-    axios.post("http://localhost:4000/users", data);
-    setConfirmRegister(true)
+
+    const verifyName = dataUsers.some((el)=> el.name === data.name);
+    const verifyEmail = dataUsers.some((el)=> el.email === data.email);
+
+    if(verifyName || verifyEmail){
+      setTimeMessage(true)
+
+      if(verifyName && verifyEmail === false){
+        setNameUserVerify(true)
+        setEmailVerify(false)
+      }
+      else if(verifyEmail && verifyName === false){
+        setEmailVerify(true)
+        setNameUserVerify(false)
+      }
+      else{
+        setEmailVerify(true)
+        setNameUserVerify(true)
+      }
+    }
+    else{
+      //Enviar los datos al servidor
+      axios.post("http://localhost:4000/users", data);
+      setConfirmRegister(true)
+    }
   };
 
   return (
@@ -43,6 +73,10 @@ export function Register() {
         confirmAccount={true}
         submitForm={handleSubmitForm}
         validateEmail={true}
+        emailVerify={emailVerify}
+        nameUserVerify={nameUserVerify}
+        timeMessage={timeMessage}
+        setTimeMessage={setTimeMessage}
       />
     </>
   );

@@ -32,7 +32,7 @@ export function ModalError(props) {
         >
           No pudiste comprar los productos
         </h4>
-        <p style={{ color: "#fff" }}>
+        <p style={{ color: "#fff", fontSize: "13px" }}>
           Debes iniciar sesión para realizar la compra. Si no tenés una cuenta
           registrate{" "}
           <Link to={"/register"}>
@@ -52,7 +52,7 @@ export function ModalError(props) {
         <Link to={"/login"}>
           <Button
             variant="outlined"
-            style={{ background: "#B8860B", color: "#fff" }}
+            style={{ background: "#B8860B", color: "#fff", marginTop: "15px" }}
           >
             Iniciar Sesión
           </Button>

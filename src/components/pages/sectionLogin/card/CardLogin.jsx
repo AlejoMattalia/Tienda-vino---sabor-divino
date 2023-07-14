@@ -7,6 +7,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export function CardLogin({
   titleCard,
@@ -14,16 +15,18 @@ export function CardLogin({
   viewEmail,
   confirmAccount,
   submitForm,
-  validateEmail
+  validateEmail,
+  emailVerify,
+  nameUserVerify,
+  timeMessage,
+  setTimeMessage,
 }) {
-
   //Valor iniciar del usuario
   const valueInitial = {
     name: "",
     email: "",
     password: "",
   };
-
 
   //Validaciones
   const { handleSubmit, handleChange, errors, values } = useFormik({
@@ -54,6 +57,19 @@ export function CardLogin({
 
     onSubmit: submitForm,
   });
+
+  //useEffect para mostrar por 5 segundos el aviso de que superaste el stock
+  useEffect(() => {
+    if (timeMessage) {
+      const timeout = setTimeout(() => {
+        setTimeMessage(false);
+      }, 2500);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [timeMessage]);
 
   return (
     <section className="container-global-register">
@@ -109,7 +125,19 @@ export function CardLogin({
         <Button className="button-register" variant="contained" type="submit">
           {textBotton}
         </Button>
-        
+
+        {(emailVerify === true || nameUserVerify === true) && timeMessage && (
+          <div className="text-confirmRegister">
+            {emailVerify === true && nameUserVerify === true ? (
+              <p>El nombre de usuario y el email ya fueron utilizados.</p>
+            ) : emailVerify && !nameUserVerify ? (
+              <p>El email ya fue utilizado.</p>
+            ) : !emailVerify && nameUserVerify ? (
+              <p>El nombre de usuario ya fue utilizado.</p>
+            ) : null}
+          </div>
+        )}
+
         {/* Se muestra este mensaje cuando el usuario ya tiene una cuenta y tiene que iniciar sesión */}
         {confirmAccount ? (
           <Link to={"/login"}>
@@ -117,10 +145,8 @@ export function CardLogin({
               Si ya tenes una cuenta, <a>Inicia Sesión</a>
             </p>
           </Link>
-        ) : 
-        
-        //Se muestra este mensaje cuando el usuario no tiene cuanta y tiene que registrarse
-        (
+        ) : (
+          //Se muestra este mensaje cuando el usuario no tiene cuanta y tiene que registrarse
           <Link to={"/register"}>
             <p className="confirmAccount">
               Si no tenes una cuenta, <a>Registrate</a>
@@ -128,7 +154,6 @@ export function CardLogin({
           </Link>
         )}
       </form>
-
     </section>
   );
 }

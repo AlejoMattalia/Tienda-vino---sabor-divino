@@ -102,7 +102,7 @@ export function Cart() {
         </section>
       </div>
 
-      {showConfirmBuy && <ConfirmBuy />}
+      {showConfirmBuy && <ConfirmBuy/>}
 
       <CompanyInfo />
     </article>

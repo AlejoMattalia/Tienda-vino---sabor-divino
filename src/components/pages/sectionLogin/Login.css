@@ -34,6 +34,20 @@
     text-align: center;
 }
 
+.text-confirmRegister{
+    padding: 5px 10px 0px 10px;
+    margin: 15px 0px 20px 0px;
+    width: 160px;
+    height: 70px;
+    border: 1px solid rgb(255, 20, 20);
+    border-radius: 10px;
+}
+
+.text-confirmRegister p{
+    color: rgb(255, 20, 20);
+    font-size: 13px;
+    text-align: center;
+}
 
 
 @media (max-width: 850px) {

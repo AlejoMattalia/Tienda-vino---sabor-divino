@@ -1,6 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import "./ItemList.css";
-import { Card } from "../../common/cards/Card";
+import { Card } from "../../common/card/Card";
 import { Loading } from "../../layout/Loading";
 import { Error } from "../../layout/Error";
 import { Link } from "react-router-dom";
