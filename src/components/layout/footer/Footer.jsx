@@ -9,7 +9,7 @@ export function Footer() {
   return (
 
     // Footer
-    <MDBFooter className="text-center" color="white" style={{background: "hsl(0, 0%, 6%)", borderTop: "2px solid #fff"}}>
+    <MDBFooter className="text-center" color="white" style={{background: "hsl(0, 0%, 6%)"}}>
       <MDBContainer className="pt-3">
         <section className="mb-4">
          

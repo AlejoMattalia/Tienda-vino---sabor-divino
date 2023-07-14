@@ -1,5 +1,7 @@
 import "./Mask.css";
 import "../../../../App.css";
+import { Link } from "react-router-dom";
+
 
 export function Mask() {
    return (
@@ -16,10 +18,10 @@ export function Mask() {
 
           <div className="mt-5">
             <button className="buttons-links combos">
-              <a href="">Combos</a>
+              <Link to={"/category/combos"}>Combos</Link>
             </button>
             <button className="buttons-links vinos">
-              <a href="">Vinos</a>
+              <Link to={"/category/itemList"}>Vinos</Link>
             </button>
           </div>
         </div>

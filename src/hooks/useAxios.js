@@ -17,3 +17,4 @@ export function useAxios(url) {
 
   return {data, loading, error};
 }
+

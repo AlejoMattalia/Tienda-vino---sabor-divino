@@ -14,7 +14,6 @@ export function Login() {
   const [message, setMessage] = useState(undefined);
 
   const submitForm = (data) => {
-
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
       return (
@@ -22,9 +21,6 @@ export function Login() {
         user.password.trim() === data.password.trim()
       );
     });
-
-    console.log(data)
-    console.log(dataUser)
 
     //Si es true, guardar los datos en la varible que se encuentra en el contexto
     if (existsUser === true) {
@@ -52,8 +48,17 @@ export function Login() {
             <Link to={"/"}>
               <Button
                 variant="contained"
-                onClick={() => setMessage(undefined)}
                 style={{ backgroundColor: "#B8860B" }}
+                onClick={() => {
+                  setMessage(undefined)
+
+                  setTimeout(() => {
+                    window.scrollTo({
+                      top: 0,
+                      behavior: "smooth",
+                    });
+                  }, 1000);
+                }}
               >
                 Ir al inicio
               </Button>
@@ -67,9 +72,7 @@ export function Login() {
       {message === false && (
         <>
           <div className="container-message">
-            <h1>
-              Usuario o contraseña incorrecta
-            </h1>
+            <h1>Usuario o contraseña incorrecta</h1>
             <Button
               variant="contained"
               onClick={() => setMessage(undefined)}

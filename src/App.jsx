@@ -1,12 +1,10 @@
 import "./App.css";
-import { Home } from "./components/pages/home/Home";
-import { Login } from "./components/pages/sectionLogin/Login.jsx";
-import { Register } from "./components/pages/sectionLogin/Register";
 import { AuthContextProvider } from "./context/AuthContext";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout } from "./components/layout/Layout";
+import { BrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ConfigContext } from "./context/ConfigContext";
+import { CartContextProvider } from "./context/CartContext";
+import { AppRouter } from "./routes/AppRouter";
 
 function App() {
   const { widthPage, isClickOverflow } = useContext(ConfigContext);
@@ -14,21 +12,12 @@ function App() {
   return (
     <>
       <AuthContextProvider>
-        <BrowserRouter>
-          <Routes>
-
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Route>
-
-            <Route path="*" element={<h1>404 Found</h1>} />
-            
-          </Routes>
-        </BrowserRouter>
+        <CartContextProvider>
+          <BrowserRouter>
+            <AppRouter />
+          </BrowserRouter>
+        </CartContextProvider>
       </AuthContextProvider>
-
 
       <style>
         {`

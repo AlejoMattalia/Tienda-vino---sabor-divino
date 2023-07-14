@@ -42,7 +42,7 @@ export function CarouselProducts({ title, array }) {
             const formattedPrice = el.price.toLocaleString();
 
             return(
-              <Card key={el.id} title={el.name} price={formattedPrice} image={el.img}/>
+              <Card key={el.id} title={el.name} price={formattedPrice} image={el.img} id={el.id}/>
             )
           })
         }

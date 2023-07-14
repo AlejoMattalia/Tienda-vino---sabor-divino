@@ -2,7 +2,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family:Georgia, 'Times New Roman', Times, serif
+	font-family: 'Montserrat', sans-serif;
 }
 
 :root {
@@ -10,4 +10,12 @@
 	--mainColorLight: #5767aa;
 	--darkColor:  #000000;
 	--textColor: #fff;
+}
+
+.link{
+    width: 100%;
+}
+
+.btn-close{
+	background-color: #fff !important;
 }

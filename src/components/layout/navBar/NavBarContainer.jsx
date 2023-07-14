@@ -3,22 +3,14 @@ import { NavBar } from "./NavBar";
 import { ConfigContext } from "../../../context/ConfigContext";
 
 export function NavBarContainer() {
-  const [classActiveSearch, setClassActiveSearch] = useState("");
   const [classUl, setClassUl] = useState("");
   const [menuOpnen, setMenuOpnen] = useState(false);
   const [classLi, setClassLi] = useState("");
-  const [input, setInput] = useState("");
 
 
+  //Traemos del context el ancho de la pag, y la config para que no se pueda hacer scroll cuando se abra el menu
   const {widthPage, isClickOverflow, setIsClickOverflow} = useContext(ConfigContext);
 
-  // Función para mostrar o ocultar el buscador
-  const toggleSearch = () => {
-    classActiveSearch === ""
-      ? setClassActiveSearch("classActive")
-      : setClassActiveSearch("");
-    setInput("");
-  };
 
   //función para abrir o cerrar el menu cuando la pagina sea menor a 850px
   const toggleMenu = () => {
@@ -41,16 +33,12 @@ export function NavBarContainer() {
 
   return (
     <NavBar
-      toggleSearch={toggleSearch}
-      classActiveSearch={classActiveSearch}
       classUl={classUl}
       toggleMenu={toggleMenu}
       menuOpen={menuOpnen}
       toggleIcon={toggleIcon}
       classLi={classLi}
       handleLiClick={handleLiClick}
-      input={input}
-      setInput={setInput}
     />
   );
 }

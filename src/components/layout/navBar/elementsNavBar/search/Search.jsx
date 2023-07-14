@@ -23,8 +23,13 @@ export function Search({ classActiveSearch, input, setInput }) {
         name: item.name,
         img: item.img,
       }));
+      const nameVinosBlancos = vinosData.blancos.map((item) => ({
+        id: item.id,
+        name: item.name,
+        img: item.img,
+      }));
 
-      setSeacrhResults(nameCombos.concat(nameVinosTintos));
+      setSeacrhResults(nameCombos.concat(nameVinosTintos, nameVinosBlancos));
     }
   }, [combosData, vinosData]);
 

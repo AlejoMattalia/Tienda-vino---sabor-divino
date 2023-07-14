@@ -1,10 +1,10 @@
 @import "../../../App.css";
 
 .container-card{
-    margin: 50px;
+    margin: 50px 22px;
     border-radius: 12px;
     box-shadow: 0 4px 4px 0 rgba(80, 80, 80, 0.2);
-    max-width: 280px;
+    width: 280px;
     height: 380px;
     display: flex;
     flex-direction: column;
@@ -64,7 +64,7 @@
 
     .container-card{
         position: relative;
-        left: 100px;
+        left: 140px;
     }
 }
 
@@ -72,7 +72,7 @@
 
     .container-card{
         position: relative;
-        left: 70px;
+        left: 100px;
     }
 }
 
@@ -80,7 +80,7 @@
 
     .container-card{
         position: relative;
-        left: 40px;
+        left: 80px;
     }
 }
 
@@ -88,7 +88,7 @@
 
     .container-card{
         position: relative;
-        left: 25px;
+        left: 60px;
     }
 }
 
@@ -96,7 +96,7 @@
 
     .container-card{
         position: relative;
-        left: 5px;
+        left: 40px;
     }
 }
 
@@ -104,6 +104,6 @@
 
     .container-card{
         position: relative;
-        left: 0;
+        left: 30px;
     }
 }
