@@ -7,7 +7,6 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 export function CardLogin({
   titleCard,
@@ -18,8 +17,7 @@ export function CardLogin({
   validateEmail,
   emailVerify,
   nameUserVerify,
-  timeMessage,
-  setTimeMessage,
+  timeMessage
 }) {
   //Valor iniciar del usuario
   const valueInitial = {
@@ -57,19 +55,6 @@ export function CardLogin({
 
     onSubmit: submitForm,
   });
-
-  //useEffect para mostrar por 5 segundos el aviso de que superaste el stock
-  useEffect(() => {
-    if (timeMessage) {
-      const timeout = setTimeout(() => {
-        setTimeMessage(false);
-      }, 2500);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, [timeMessage]);
 
   return (
     <section className="container-global-register">

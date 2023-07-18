@@ -3,21 +3,13 @@ import "../Cart.css";
 import { CartContext } from "../../../../context/CartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ConfigContext } from "../../../../context/ConfigContext";
+import { Link } from "react-router-dom";
 
 export function CartProduct() {
-  const { cart, clearOneProduct, setTotalDiscount, setTotalProducts } =
+  const { cart, clearOneProduct, setTotalDiscount, setTotalProducts, calculateTotalPrice, calculateDiscountPrice} =
     useContext(CartContext);
   const { widthPage } = useContext(ConfigContext);
 
-  //Funcion para calcular el descuento
-  const calculateDiscountPrice = (price, discount) => {
-    return price - price * (discount / 100);
-  };
-
-  //Funcion para calcular el total
-  const calculateTotalPrice = (discount, quantity) => {
-    return discount * quantity;
-  };
 
   useEffect(() => {
     let accumulatedDiscount = 0,
@@ -39,7 +31,7 @@ export function CartProduct() {
     <div>
       {cart.length === 0 ? (
         <div className="container-product">
-          <p className="cart-void">El CARRITO ESTÁ VACIO</p>
+          <p className="cart-void">EL CARRITO ESTÁ VACIO</p>
         </div>
       ) : (
         <>
@@ -49,7 +41,7 @@ export function CartProduct() {
 
             return (
               <div key={el.id} className="container-product">
-                <img src={el.img} alt="vino" />
+                <Link to={`/itemDetail/${el.id}`}><img src={el.img} alt="vino" /></Link>
                 <div className="container-product-info">
                   <p className="title">{el.name}</p>
 

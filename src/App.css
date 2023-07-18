@@ -19,3 +19,8 @@
 .btn-close{
 	background-color: #fff !important;
 }
+
+.swal2-title{
+	border: none !important;
+	margin: 20px 0 0 100px;
+}

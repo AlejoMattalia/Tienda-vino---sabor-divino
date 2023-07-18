@@ -27,8 +27,7 @@ export function Cart() {
     if (cart.length === 0) {
       setVerifyProductCart(true);
       setTimeMessage(true);
-    }
-    else{
+    } else {
       setVerifyProductCart(false);
     }
   };
@@ -92,17 +91,19 @@ export function Cart() {
             )}
           </div>
 
-          <Button
-            variant="outlined"
-            className="button-void-cart"
-            onClick={clearCart}
-          >
-            Vaciar Carrito
-          </Button>
+          {cart.length > 0 && (
+            <Button
+              variant="outlined"
+              className="button-void-cart"
+              onClick={clearCart}
+            >
+              Vaciar Carrito
+            </Button>
+          )}
         </section>
       </div>
 
-      {showConfirmBuy && <ConfirmBuy/>}
+      {showConfirmBuy && <ConfirmBuy />}
 
       <CompanyInfo />
     </article>

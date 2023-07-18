@@ -3,8 +3,35 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import EmailIcon from "@mui/icons-material/Email";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
+import { Skeleton } from "@mui/material";
+import { useEffect, useState } from "react";
 
 export function Contact() {
+  //Mostrar mapa cuando cargue
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(true);
+    }, 3000);
+
+    // const iframe = document.querySelector("iframe");
+
+    // const handleLoad = () => {
+    //   setLoading(false);
+    // };
+
+    // if (iframe) {
+    //   iframe.addEventListener("load", handleLoad);
+    // }
+
+    // return () => {
+    //   if (iframe) {
+    //     iframe.removeEventListener("load", handleLoad);
+    //   }
+    // };
+  }, []);
+
   return (
     <article className="container-contact">
       <h3>CONTACTO</h3>
@@ -88,15 +115,24 @@ export function Contact() {
             </p>
           </div>
 
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13342.973696128669!2d-62.16969088139953!3d-33.2732088189667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1689132038961!5m2!1ses!2sar"
-            width="100%"
-            height="300"
-            frameBorder="0"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
+          {loading === false ? (
+            <Skeleton
+              variant="rectangular"
+              width="100%"
+              height={300}
+              style={{ backgroundColor: "#000", opacity: 0.9 }}
+            />
+          ) : (
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13342.973696128669!2d-62.16969088139953!3d-33.2732088189667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1689132038961!5m2!1ses!2sar"
+              width="100%"
+              height="300"
+              frameBorder="0"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+            ></iframe>
+          )}
         </section>
       </section>
     </article>

@@ -61,7 +61,5 @@ export function ModalBuyCheck(props) {
         </Button>
       </Modal.Footer>
     </Modal>
-
-    //       onClick={(()=> props.onHide, setCart([]))}
   );
 }

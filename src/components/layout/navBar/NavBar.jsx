@@ -23,7 +23,9 @@ export function NavBar({
   const { classActiveSearch, input, setInput, toggleSearch } =
     useContext(ConfigContext);
 
-  const { cart } = useContext(CartContext);
+  const { getTotalQuantity } = useContext(CartContext);
+
+  let total = getTotalQuantity()
 
   return (
     <>
@@ -54,9 +56,9 @@ export function NavBar({
               </Link>
             </li>
             <li className={classLi}>
-              <a href="" className="list-pages">
+              <Link to={"/comments"} className="list-pages">
                 Comentarios
-              </a>
+              </Link>
             </li>
             <li className={classLi}>
               <Link to={"/contact"} className="list-pages">
@@ -76,7 +78,7 @@ export function NavBar({
             {/* Icono del carrito */}
             <Link to={"/cart"}>
               <Badge
-                badgeContent={cart.length}
+                badgeContent={total}
                 showZero
                 color="secondary"
                 sx={{ cursor: "pointer", margin: "0 20px", zIndex: "1" }}

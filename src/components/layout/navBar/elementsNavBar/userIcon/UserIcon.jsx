@@ -1,19 +1,40 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./UserIcon.css";
 import { Button } from "@mui/material";
 import { AuthContext } from "../../../../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { EditUser } from "../../../../common/editUser/EditUser";
 
 export function UserIcon() {
   //Se trae del contexto el nombre con el que se registro el usuario, y la confirmacion si inicio sesion
   const { confirmLogin, userName } = useContext(AuthContext);
   const [viewFrame, setViewFrame] = useState(false); //Variable para mostrar o ocultar el cuadro
+  const [editUserConfirm, setEditUserConfirm] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   //Funcion para mostrar o ocultar cuadro
   const toggleFrame = () => {
     setViewFrame(!viewFrame);
   };
+
+  const handleButtonEdit = ()=>{
+    setEditUserConfirm(true)
+    setViewFrame(false)
+    setModalShow(true)
+  }
+
+
+  useEffect(()=>{
+    const rootElement = document.documentElement;
+    const currentOverflow = rootElement.style.overflow;
+
+    if (currentOverflow === "hidden" && modalShow === false) {
+      rootElement.style.overflow = "";
+    } else {
+      rootElement.style.overflow = "hidden";
+    }
+  },[modalShow])
 
   return (
     // Icono del usuario
@@ -37,7 +58,8 @@ export function UserIcon() {
           {confirmLogin ? (
             <div className="frame">
               <span>{userName.name}</span>
-              <Button variant="outlined" onClick={() => setViewFrame(false)}>Editar</Button>
+              <Button variant="outlined" onClick={handleButtonEdit}>Editar</Button>
+              <Button variant="contained" onClick={handleButtonEdit} className="button-delete-account">Eliminar Cuenta</Button>
             </div>
           ) 
           // Si todavia no inicio sesión, se mostrara que no inicio sesión y le da la opcion para iniciar sesión
@@ -60,6 +82,11 @@ export function UserIcon() {
           )}
         </>
       )}
+
+      {
+        editUserConfirm &&
+        <EditUser show={modalShow}  onHide={() => setModalShow(false)}/>
+      }
     </div>
   );
 }

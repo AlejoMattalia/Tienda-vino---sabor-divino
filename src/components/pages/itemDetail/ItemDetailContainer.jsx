@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext";
 
 
+
 export function ItemDetailContainer() {
   //variable para el array producto
   let arrayProducts;
-  //Variable donde se guardara el producto con su información
-  const [product, setProduct] = useState({});
+  const {product, setProduct} = useContext(CartContext)
 
 
   const {id} = useParams();
