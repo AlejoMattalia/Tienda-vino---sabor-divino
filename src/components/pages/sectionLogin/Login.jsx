@@ -17,7 +17,6 @@ export function Login() {
     //Traer al usuario para enviar el email
     const user = dataUser.find((user)=>user.name.trim() === data.name.trim());
 
-
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
       return (
@@ -32,7 +31,8 @@ export function Login() {
         ...userName,
         name: data.name,
         password: data.password,
-        email: user.email
+        email: user.email,
+        id: user.id
       });
 
       //Confirmacion verdadera para posteriormente utilizar los datos en la app

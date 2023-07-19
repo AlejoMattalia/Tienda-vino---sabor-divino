@@ -1,0 +1,112 @@
+@import "../../../App.css";
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px
+}
+
+.divInput {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px
+}
+
+.button-form {
+    background-color: var(--mainColor) !important;
+}
+
+.button-form:hover {
+    background-color: #c79925 !important;
+}
+
+.text-view-message-edit {
+    padding: 5px 10px 0px 10px;
+    margin: 10px 0px 0px 55px;
+    width: 250px;
+    height: 55px;
+    border: 1px solid var(--mainColor);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 90px;
+}
+
+.text-view-message-edit p {
+    color: var(--mainColor);
+    font-size: 13px;
+    text-align: center;
+}
+
+
+
+
+@media (max-width: 992px) {
+    .divInput {
+        width: 70%;
+    }
+
+    .button-form {
+        position: relative;
+        left: 120px;
+    }
+
+    .text-view-message-edit {
+        right: 190px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .divInput {
+        width: 85%;
+    }
+
+    .button-form {
+        left: 155px;
+    }
+
+    .text-view-message-edit {
+        right: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .button-form {
+        left: 180px;
+    }
+}
+
+@media (max-width: 540px) {
+    .button-form {
+        left: 165px;
+    }
+}
+
+
+@media (max-width: 540px) {
+    .button-form {
+        left: 155px;
+    }
+}
+
+@media (max-width: 500px) {
+    .text-view-message-edit {
+        position: relative;
+        bottom: 25px;
+    }
+
+    .button-form {
+        position: relative;
+        left: 0;
+    }
+
+    .text-view-message-edit {
+        position: relative;
+        bottom: 25px;
+        right: 30px;
+    }
+}

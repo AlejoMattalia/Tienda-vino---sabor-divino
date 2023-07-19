@@ -1,13 +1,17 @@
 import { TextField } from "@mui/material";
 
-export function Password() {
+export function Password({password, onChange, error}) {
   return (
     <TextField
-      style={{margin: "20px 5.5px 0 5.5px"}}
       id="outlined-password-input"
       label="Contraseña"
       type="password"
+      name="password"
       autoComplete="current-password"
+      defaultValue={password}
+      onChange={onChange}
+      helperText={error}
+      error={error}
     />
   );
 }

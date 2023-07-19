@@ -99,13 +99,13 @@ export function Counter({ product, onAdd }) {
       </Button>
 
       {viewAlertStockHigher && (
-        <div className="text-maxStock">
+        <div className="text-view-action">
           <p>No hay más stock de este producto.</p>
         </div>
       )}
 
       {viewAlertAddProductCart && (
-        <div className="text-maxStock">
+        <div className="text-view-action">
           <p>Agregaste el producto al carrito</p>
         </div>
       )}

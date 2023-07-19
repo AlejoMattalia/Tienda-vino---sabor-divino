@@ -104,7 +104,7 @@
     border-bottom: var(--mainColor) 2px solid;
 }
 
-.text-maxStock{
+.text-view-action{
     padding: 5px 10px 0px 10px;
     margin: 10px 0px 0px 55px;
     width: 160px;
@@ -113,7 +113,7 @@
     border-radius: 10px;
 }
 
-.text-maxStock p{
+.text-view-action p{
     color: var(--mainColor);
     font-size: 13px;
     text-align: center;

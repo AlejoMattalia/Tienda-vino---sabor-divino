@@ -1,13 +1,16 @@
 import { TextField } from "@mui/material";
 
-export function EmailEdit({email}) {
+export function EmailEdit({email, onChange, error}) {
   return (
     <TextField
-      style={{margin: "5.5px"}}
       required
       id="outlined-required"
       label="Email"
+      name="email"
       defaultValue={email}
+      onChange={onChange}
+      helperText={error}
+      error={error}
     />
   );
 }

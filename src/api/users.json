@@ -4,7 +4,8 @@
       "name": "AlejoMattalia",
       "email": "aleacade.mattalia@gmail.com",
       "password": "Lola11tita",
-      "id": 1
+      "id": 1,
+      "repeatPassword": "Lola11tita"
     },
     {
       "name": "asdsadsaa",

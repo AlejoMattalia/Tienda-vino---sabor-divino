@@ -1,6 +1,6 @@
 .frame{
     width: 170px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     position: absolute;
     top: 40px;
     right: 15px;
@@ -37,9 +37,13 @@
   }
 
   .button-delete-account{
-    margin-top: 10px !important;
     background-color: rgb(255, 20, 20) !important;
     font-size: 8px !important;
     border-radius: 5px !important;
     width: 100% !important;
+  }
+
+  .SignOff{
+    margin-top: 12px !important;
+    font-size: 10px !important;
   }
