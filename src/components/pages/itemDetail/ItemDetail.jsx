@@ -6,19 +6,17 @@ import { CarouselProducts } from "../../common/carousel/CarouselProducts";
 import { Counter } from "./elementsItemDetail/counter";
 
 export function ItemDetail({ data }) {
-
   const {
     product,
     loading,
     error,
     dataCombos,
-    dataVinos,
+    dataVinosTintos,
+    dataVinosBlancos,
     formattedPrice,
     formattedPriceDiscount,
-    onAdd
+    onAdd,
   } = data;
-
-  
 
   return (
     <>
@@ -46,6 +44,16 @@ export function ItemDetail({ data }) {
                   Stock:{" "}
                   {product.stock > 6 ? (
                     <span>Quedan {product.stock} unidades</span>
+                  ) : product.stock === 0 ? (
+                    <span
+                      style={{
+                        color: "#dd5d30",
+                        marginLeft: "12px",
+                        fontSize: "20px",
+                      }}
+                    >
+                      No hay stock
+                    </span>
                   ) : (
                     <span
                       style={{
@@ -68,16 +76,15 @@ export function ItemDetail({ data }) {
             </div>
           </div>
 
-          <CompanyInfo />
-          <CarouselProducts title="COMBOS" array={dataCombos} />
-
-          {dataVinos !== null && (
+          {dataCombos !== null && dataVinosBlancos !== null && dataVinosTintos !== null &&(
             <>
-              <CarouselProducts title="VINOS TINTOS" array={dataVinos.tintos} />
+              <CompanyInfo />
+              <CarouselProducts title="COMBOS" array={dataCombos} />
+              <CarouselProducts title="VINOS TINTOS" array={dataVinosTintos} />
               <div style={{ border: "2px solid #2e2e2e" }}></div>
               <CarouselProducts
                 title="VINOS BLANCOS"
-                array={dataVinos.blancos}
+                array={dataVinosBlancos}
               />
             </>
           )}

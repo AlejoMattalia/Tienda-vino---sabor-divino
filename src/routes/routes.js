@@ -6,7 +6,7 @@ import { ItemListContainer } from "../components/pages/itemList/ItemListContaine
 import { Login } from "../components/pages/sectionLogin/Login";
 import { Register } from "../components/pages/sectionLogin/Register";
 import { Cart } from "../components/pages/cart/Cart.jsx"
-import { Comments } from "../components/pages/comments/Comments";
+import { CommentsContainer } from "../components/pages/comments/CommentsContainer.jsx";
 
 export const routes = [
     {
@@ -66,6 +66,6 @@ export const routes = [
     {
         id:"comments",
         path:"/comments",
-        Element: Comments
+        Element: CommentsContainer
     }
 ]

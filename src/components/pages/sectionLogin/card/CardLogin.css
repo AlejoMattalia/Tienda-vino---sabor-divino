@@ -1,7 +1,7 @@
 @import "../../../../App.css";
 
 .container-global-register {
-    background-color: black;
+    background-color: var(--darkColor);
     height: 110vh;
     display: flex;
     align-items: center;
@@ -113,7 +113,7 @@ h2 {
 }
 
 .css-1x51dt5-MuiInputBase-input-MuiInput-input {
-    color: #fff !important;
+    color: var(--textColor) !important;
 }
 
 

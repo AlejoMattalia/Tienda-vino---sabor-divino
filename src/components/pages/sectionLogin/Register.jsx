@@ -19,6 +19,7 @@ export function Register() {
 
   const handleSubmitForm = (data) => {
 
+    //Verificar si el email y name ya existen en la base de datos
     const verifyName = dataUsers.some((el)=> el.name === data.name);
     const verifyEmail = dataUsers.some((el)=> el.email === data.email);
 

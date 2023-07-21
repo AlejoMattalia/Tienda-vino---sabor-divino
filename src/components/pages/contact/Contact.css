@@ -10,7 +10,7 @@
 }
 
 .container-contact h3 {
-    color: #fff;
+    color: var(--textColor);
     font-size: 30px;
     letter-spacing: 1px;
     margin-bottom: 50px;
@@ -75,8 +75,8 @@
 }
 
 .container-location p span {
-    color: #fff;
-    border-bottom: 1px solid #fff;
+    color: var(--textColor);
+    border-bottom: 1px solid var(--textColor);
 }
 
 

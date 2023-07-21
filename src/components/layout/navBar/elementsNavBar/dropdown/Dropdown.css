@@ -16,7 +16,7 @@
 
 .item-dropDown{
     border: none;
-    color: #000;
+    color: var(--darkColor);
 }
 
 .dropdown-menu show{

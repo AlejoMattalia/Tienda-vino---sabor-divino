@@ -1,0 +1,117 @@
+@import "../../../App.css";
+
+.comments-container {
+    padding: 50px 20px;
+    background-color: hsl(0, 0%, 8%);
+}
+
+.comments-container .title {
+    color: var(--textColor);
+    font-size: 20px;
+    position: relative;
+    left: 20px;
+}
+
+.container-section-comments {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+.section-comments {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.card-comments {
+    width: 32%;
+    border: #242424 1px solid;
+    padding-top: 10px;
+    padding-left: 11px;
+    margin-bottom: 15px;
+}
+
+.card-comments .name {
+    color: var(--textColor);
+    font-size: 15px;
+    position: relative;
+    left: 16px;
+}
+
+.container-comment {
+    padding-left: 8px;
+    height: 180px;
+}
+
+.buttonDelete-comment {
+    position: relative;
+    bottom: 10px;
+    left: 30px;
+    color: rgb(255, 20, 20) !important;
+}
+
+.comment {
+    color: #000 !important;
+    background-color: #e6e6e6;
+    width: 180px;
+    padding: 8px;
+    font-size: 12px !important;
+    word-wrap: break-word;
+    border-radius: 20px;
+    position: relative;
+    bottom: 16px;
+}
+
+.comment span {
+    margin-top: 20px;
+    color: var(--mainColor);
+    border-bottom: 2px solid var(--mainColor);
+    position: relative;
+    top: 12px;
+    left: 5px;
+    cursor: pointer
+}
+
+
+.triangle-comment {
+    z-index: 1000;
+    position: relative;
+    bottom: 203px;
+    left: 25px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #e6e6e6;
+}
+
+.starts-comment {
+    font-size: 15px !important;
+    position: relative;
+    bottom: 20px;
+    left: 15px;
+}
+
+.starts-comment .css-1c99szj-MuiRating-icon {
+    color: #353535;
+}
+
+.starts-controller .css-1c99szj-MuiRating-icon{
+    color: #353535;
+}
+
+.container-addComment {
+    width: 30%;
+    padding: 20px;
+    border: #242424 1px solid;
+}
+
+.titleAddComment{
+    font-size: 25px;
+    color: var(--textColor);
+}

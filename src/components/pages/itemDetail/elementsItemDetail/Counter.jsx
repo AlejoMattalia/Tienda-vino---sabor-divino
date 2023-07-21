@@ -16,6 +16,7 @@ export function Counter({ product, onAdd }) {
   const [optionsNumbersCounter, setOptionsNumbersCounter] = useState([]);
   const [counter, setCounter] = useState(1);
 
+
   //useEffect para guardar en optionsNumbersCounter cuanto stock hay del producto para luego mapearlo
   useEffect(() => {
     if (product.stock !== undefined) {
@@ -63,7 +64,6 @@ export function Counter({ product, onAdd }) {
     }
   }, [viewAlertAddProductCart]);
 
-
   const handleButtonAddCart = () => {
     //Agregar a la funcion onAdd el numero de productos que eligio el usuario
     onAdd(counter);
@@ -71,32 +71,38 @@ export function Counter({ product, onAdd }) {
 
   return (
     <>
-      <Form.Select
-        style={{ width: "80px", display: "inline-block", marginLeft: "10px" }}
-        onChange={(e) => setCounter(e.target.value)}
-      >
-        {
-          // Mapeo de la cantidad de stock
-          optionsNumbersCounter.map((option) => (
-            <option
-              key={option}
-              value={option}
-              selected={option === initailCounterItemDetail}
-            >
-              {option}
-            </option>
-          ))
-        }
-      </Form.Select>
+      {product.stock > 0 ? (
+        <Form.Select
+          style={{ width: "80px", display: "inline-block", marginLeft: "10px" }}
+          onChange={(e) => setCounter(e.target.value)}
+        >
+          {
+            // Mapeo de la cantidad de stock
+            optionsNumbersCounter.map((option) => (
+              <option
+                key={option}
+                value={option}
+                selected={option === initailCounterItemDetail}
+              >
+                {option}
+              </option>
+            ))
+          }
+        </Form.Select>
+      ) : (
+        <span style={{fontSize: "20px", color: "#000"}}>0</span>
+      )}
 
       <Modal description={product.description} />
-      <Button
-        className="button-addCart"
-        variant="contained"
-        onClick={handleButtonAddCart}
-      >
-        Agregar al carrito
-      </Button>
+      {product.stock > 0 && (
+        <Button
+          className="button-addCart"
+          variant="contained"
+          onClick={handleButtonAddCart}
+        >
+          Agregar al carrito
+        </Button>
+      )}
 
       {viewAlertStockHigher && (
         <div className="text-view-action">

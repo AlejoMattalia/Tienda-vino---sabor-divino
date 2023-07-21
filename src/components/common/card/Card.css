@@ -12,7 +12,7 @@
     justify-content: space-between;
     gap: 10px;
     text-align: center;
-    background-color: #fff;
+    background-color: var(--textColor);
 }
 
 .container-card div{
@@ -42,7 +42,7 @@
 .container-card p{
     position: relative;
     top: 20px;
-    color: #000;
+    color: var(--darkColor);
 }
 
 .container-card button{

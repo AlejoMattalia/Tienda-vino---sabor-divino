@@ -1,3 +1,5 @@
+@import "../../../../../App.css";
+
 .frame{
     width: 170px;
     padding: 10px 20px;
@@ -13,7 +15,7 @@
 }
 
 .frame span{
-    color: #000;
+    color: var(--darkColor);
     margin-bottom: 8px;
     letter-spacing: 1px;
     font-weight: 600;
@@ -33,7 +35,7 @@
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 10px solid white;
+    border-bottom: 10px solid var(--textColor);
   }
 
   .button-delete-account{

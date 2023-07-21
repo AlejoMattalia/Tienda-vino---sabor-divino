@@ -9,7 +9,7 @@
 }
 
 .contianer-blog h1{
-    color: #fff;
+    color: var(--textColor);
     margin-bottom: 50px;
     font-size: 30px;
     letter-spacing: 1px;
@@ -54,7 +54,7 @@
 }
 
 .container-info p{
-    color: #fff;
+    color: var(--textColor);
     font-size: 14px;
     letter-spacing: .5px;
 }

@@ -42,7 +42,7 @@
 }
 
 .css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root {
-    color: #fff !important;
+    color: var(--textColor) !important;
 }
 
 .css-1to7aaw-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {

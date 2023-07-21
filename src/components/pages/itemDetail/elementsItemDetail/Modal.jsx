@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../ItemDetail.css"
+import "../ItemDetail.css";
 import {
   MDBBtn,
   MDBModal,
@@ -29,10 +29,7 @@ export function Modal({ description }) {
 
   return (
     <>
-      <p
-        onClick={toggleShow}
-        className="button-modal"
-      >
+      <p onClick={toggleShow} className="button-modal">
         Descripción
       </p>
 
@@ -52,7 +49,7 @@ export function Modal({ description }) {
                 {" "}
                 -&nbsp;
                 {description !== undefined &&
-                  description.split("\n").map((line, index) => (
+                  description.split("\\n").map((line, index) => (
                     <React.Fragment key={index}>
                       {index !== 0 && "- "}
                       {line}

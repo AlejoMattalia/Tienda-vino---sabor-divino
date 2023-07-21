@@ -1,37 +1,27 @@
 import SearchIcon from "@mui/icons-material/Search";
 import "./Search.css";
 import { useEffect, useState } from "react";
-import { useAxios } from "../../../../../hooks/useAxios.js";
 import {SearchItems} from "./SearchItems/SearchItems.jsx";
+import {useFirebase} from "../../../../../hooks/useFirebase.js"
 
 export function Search({ classActiveSearch, input, setInput }) {
   const [searchResults, setSeacrhResults] = useState(null);
   const [searchItemsResults, setSearchItemsResults] = useState([])
 
-  const { data: combosData } = useAxios("http://localhost:3000/combos");
-  const { data: vinosData } = useAxios("http://localhost:3000/vinos");
+  const { data: dataAllProducts} = useFirebase("products");
+
 
   useEffect(() => {
-    if (combosData && vinosData) {
-      const nameCombos = combosData.map((item) => ({
-        id: item.id,
-        name: item.name,
-        img: item.img,
-      }));
-      const nameVinosTintos = vinosData.tintos.map((item) => ({
-        id: item.id,
-        name: item.name,
-        img: item.img,
-      }));
-      const nameVinosBlancos = vinosData.blancos.map((item) => ({
-        id: item.id,
-        name: item.name,
-        img: item.img,
-      }));
 
-      setSeacrhResults(nameCombos.concat(nameVinosTintos, nameVinosBlancos));
+    if(dataAllProducts){
+      const captureInfoItems = dataAllProducts.map((item)=>({
+        id: item.id,
+        name: item.name,
+        img: item.img,
+      }))
+      setSeacrhResults(captureInfoItems)
     }
-  }, [combosData, vinosData]);
+  }, [dataAllProducts]);
 
   useEffect(() => {
     if (searchResults) {

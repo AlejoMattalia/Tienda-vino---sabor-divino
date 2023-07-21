@@ -1,3 +1,5 @@
+@import "../../../App.css";
+
 .container-message {
     z-index: 2000;
     width: 40%;
@@ -28,7 +30,7 @@
 }
 
 .container-message h1 {
-    color: #fff;
+    color: var(--textColor);
     margin-bottom: 40px;
     font-size: 35px;
     text-align: center;
