@@ -26,7 +26,19 @@ export function Dropdown({ handleLiClick }) {
           </NavDropdown.Item>
         </Link>
 
-        <Link to={"/category/itemList"}>
+        <Link to={"/category/tintos"}>
+          <NavDropdown.Item
+            href="#action/3.4"
+            style={{
+              color: "#000",
+              border: "none"
+            }}
+          >
+            Vinos Tintos
+          </NavDropdown.Item>
+        </Link>
+
+        <Link to={"/category/blancos"}>
           <NavDropdown.Item
             href="#action/3.4"
             style={{
@@ -35,7 +47,7 @@ export function Dropdown({ handleLiClick }) {
               borderRadius: "0 0 10px 10px",
             }}
           >
-            Vinos
+            Vinos Blancos
           </NavDropdown.Item>
         </Link>
       </NavDropdown>

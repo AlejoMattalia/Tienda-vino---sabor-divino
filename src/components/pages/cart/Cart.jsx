@@ -4,7 +4,7 @@ import "./Cart.css";
 import { CartProduct } from "./elementsCart/CartProduct.jsx";
 import { CompanyInfo } from "../../common/companyInfo/CompanyInfo.jsx";
 import { Button } from "@mui/material";
-import { ConfirmBuy } from "../../common/confirmBuy/ConfirmBuy";
+import { useNavigate } from "react-router-dom";
 
 export function Cart() {
   const {
@@ -12,23 +12,21 @@ export function Cart() {
     clearCart,
     totalDiscount,
     totalProducts,
-    setModalShow,
     setVerifyProductCart,
     verifyProductCart,
   } = useContext(CartContext);
 
+  const navigate = useNavigate();
+
   //Cuando haga click en agregar al carrito hace ejecutar un componente que verifica si el usuario se registro
-  const [showConfirmBuy, setShowConfirmBuy] = useState(false);
 
-  const functionButtonBuy = () => {
-    setModalShow(true);
-    setShowConfirmBuy(true);
-
+  const functionButtonCheckout = () => {
     if (cart.length === 0) {
       setVerifyProductCart(true);
       setTimeMessage(true);
     } else {
       setVerifyProductCart(false);
+      navigate("/checkout")
     }
   };
 
@@ -79,9 +77,9 @@ export function Cart() {
             <Button
               className="button-buy"
               variant="contained"
-              onClick={functionButtonBuy}
+              onClick={functionButtonCheckout}
             >
-              Comprar
+              Finalizar compra
             </Button>
 
             {verifyProductCart && timeMessage && (
@@ -102,8 +100,6 @@ export function Cart() {
           )}
         </section>
       </div>
-
-      {showConfirmBuy && <ConfirmBuy />}
 
       <CompanyInfo />
     </article>

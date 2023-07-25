@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { EmailEdit } from "./elementsEditUser/EmailEdit";
 import { UserNameEdit } from "./elementsEditUser/UserNameEdit";
@@ -9,7 +8,9 @@ import { AuthContext } from "../../../context/AuthContext";
 import "./EditUser.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
+import { Button } from "@mui/material";
+import {dataBase} from "../../../firebaseConfig"
+import { doc, updateDoc } from "firebase/firestore";
 
 export function EditUser(props) {
   //LLamamos a los datos desde el contexto
@@ -76,20 +77,19 @@ export function EditUser(props) {
       setDateEqual(true)
 
     } else {
-      axios
-        .patch(`http://localhost:4000/users/${userName.id}`, information)
-        .then(() => {
-          setUserName({
-            ...userName,
-            name: information.name,
-            email: information.email,
-            password: information.password,
-          });
-          setVerifyEditTrue(true);
-        })
-        .catch(() => {
-          setErrorEditUser(true);
+      updateDoc(doc(dataBase, "users", userName.id), {email: information.email, name: information.name, password: information.password})
+      .then(() => {
+        setUserName({
+          ...userName,
+          name: information.name,
+          email: information.email,
+          password: information.password,
         });
+        setVerifyEditTrue(true);
+      })
+      .catch(() => {
+        setErrorEditUser(true);
+      });
     }
   };
 
@@ -139,13 +139,13 @@ export function EditUser(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}>
         <Modal.Title id="contained-modal-title-vcenter">
           Editar usuario
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}>
         <form action="" className="form-container" onSubmit={handleSubmit}>
           <div className="divInput">
             <UserNameEdit

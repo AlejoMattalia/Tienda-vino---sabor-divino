@@ -8,9 +8,19 @@ import { dataBase } from "../../../firebaseConfig";
 
 export function ItemDetailContainer() {
   //Llamamos al array de productos
-  const { data: dataCombos, loading, error } = useFirebase("products", "combos");
+  const { data: dataCombos, error } = useFirebase("products", "combos");
   const { data: dataVinosTintos } = useFirebase("products", "tintos");
   const { data: dataVinosBlancos } = useFirebase("products", "blancos");
+
+  const loading = !(dataCombos !== null && dataVinosTintos !== null && dataVinosBlancos !== null);
+  const [loadingSkeletor, setLoadingSkeletor] = useState(false);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setLoadingSkeletor(true)
+    }, 4000)
+  })
+
 
   const { product, setProduct } = useContext(CartContext);
   const { id } = useParams();
@@ -22,7 +32,7 @@ export function ItemDetailContainer() {
 
       getDoc(productRef).then((res) => {
         let product = {...res.data(), id: res.id}
-        setProduct(product)
+        setProduct(product);
       });
   }, [id]);
 
@@ -58,6 +68,7 @@ export function ItemDetailContainer() {
     formattedPrice,
     formattedPriceDiscount,
     onAdd,
+    loadingSkeletor
   };
 
   return <ItemDetail data={data} />;

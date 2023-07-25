@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { ModalError } from "./elementsConfirmBuy/ModalError.jsx";
 import { CartContext } from "../../../context/CartContext";
-import { ModalConfirmBuy } from "./elementsConfirmBuy/ModalConfirmBuy";
+import { ModalConfirmBuy } from "./elementsConfirmBuy/ModalConfirmBuy"
 import { ModalBuyCheck } from "./elementsConfirmBuy/ModalBuyCheck";
 
 export function ConfirmBuy() {
@@ -22,11 +22,11 @@ export function ConfirmBuy() {
       {verifyProductCart === false &&
         (confirmLogin ? (
           <>
-            <ModalConfirmBuy show={modalShow} onHide={() => setModalShow(false)} setModalShowBuyCheck={setModalShowBuyCheck}/>
+            <ModalConfirmBuy show={modalShow} onHide={() => setModalShow(false)} setModalShowBuyCheck={setModalShowBuyCheck} />
             <ModalBuyCheck show={modalShowBuyCheck} onHide={handleCloseModals}/>
           </>
         ) : (
-          <ModalError show={modalShow} onHide={() => setModalShow(false)} />
+          <ModalError show={modalShow} onHide={() => setModalShow(false)} text={"Debes iniciar sesión para realizar la compra. Si no tenés una cuenta registrate"} title={"No pudiste comprar los productos"}/>
         ))}
     </div>
   );

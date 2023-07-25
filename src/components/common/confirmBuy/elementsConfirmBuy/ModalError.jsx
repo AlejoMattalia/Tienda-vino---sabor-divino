@@ -30,11 +30,10 @@ export function ModalError(props) {
         <h4
           style={{ color: "#fff", textAlign: "center", marginBottom: "30px" }}
         >
-          No pudiste comprar los productos
+          {props.title}
         </h4>
         <p style={{ color: "#fff", fontSize: "13px" }}>
-          Debes iniciar sesión para realizar la compra. Si no tenés una cuenta
-          registrate{" "}
+          {props.text}{" "}
           <Link to={"/register"}>
             <span
               style={{

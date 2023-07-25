@@ -1,11 +1,11 @@
 import Form from "react-bootstrap/Form";
 import { Modal } from "./Modal";
-import { Button } from "@mui/material";
+import { Button, Skeleton } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import "../ItemDetail.css";
 import { CartContext } from "../../../../context/CartContext";
 
-export function Counter({ product, onAdd }) {
+export function Counter({ product, onAdd, loadingSkeletor }) {
   const {
     cart,
     viewAlertStockHigher,
@@ -15,7 +15,6 @@ export function Counter({ product, onAdd }) {
   } = useContext(CartContext);
   const [optionsNumbersCounter, setOptionsNumbersCounter] = useState([]);
   const [counter, setCounter] = useState(1);
-
 
   //useEffect para guardar en optionsNumbersCounter cuanto stock hay del producto para luego mapearlo
   useEffect(() => {
@@ -44,7 +43,7 @@ export function Counter({ product, onAdd }) {
     if (viewAlertStockHigher) {
       const timeout = setTimeout(() => {
         setViewAlertStockHigher(false);
-      }, 2500);
+      }, 3500);
 
       return () => {
         clearTimeout(timeout);
@@ -56,7 +55,7 @@ export function Counter({ product, onAdd }) {
     if (viewAlertAddProductCart) {
       const timeout = setTimeout(() => {
         setViewAlertAddProductCart(false);
-      }, 2500);
+      }, 3500);
 
       return () => {
         clearTimeout(timeout);
@@ -71,26 +70,44 @@ export function Counter({ product, onAdd }) {
 
   return (
     <>
-      {product.stock > 0 ? (
-        <Form.Select
-          style={{ width: "80px", display: "inline-block", marginLeft: "10px" }}
-          onChange={(e) => setCounter(e.target.value)}
-        >
-          {
-            // Mapeo de la cantidad de stock
-            optionsNumbersCounter.map((option) => (
-              <option
-                key={option}
-                value={option}
-                selected={option === initailCounterItemDetail}
-              >
-                {option}
-              </option>
-            ))
-          }
-        </Form.Select>
+      {loadingSkeletor ? (
+        product.stock > 0 ? (
+          <Form.Select
+            style={{
+              width: "80px",
+              display: "inline-block",
+              marginLeft: "10px",
+            }}
+            onChange={(e) => setCounter(e.target.value)}
+          >
+            {
+              // Mapeo de la cantidad de stock
+              optionsNumbersCounter.map((option) => (
+                <option
+                  key={option}
+                  value={option}
+                  selected={option === initailCounterItemDetail}
+                >
+                  {option}
+                </option>
+              ))
+            }
+          </Form.Select>
+        ) : (
+          <span style={{ fontSize: "20px", color: "#000" }}>0</span>
+        )
       ) : (
-        <span style={{fontSize: "20px", color: "#000"}}>0</span>
+        <Skeleton
+          variant="rectangular"
+          width={120}
+          height={20}
+          style={{
+            opacity: 0.9,
+            position: "relative",
+            left: "75px",
+            bottom: "22px",
+          }}
+        />
       )}
 
       <Modal description={product.description} />

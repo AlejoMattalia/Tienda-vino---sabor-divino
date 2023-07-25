@@ -1,15 +1,17 @@
-import axios from "axios";
+// import axios from "axios";
 import { CardLogin } from "./card/CardLogin.jsx";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Login.css";
-import {useAxios} from "../../../hooks/useAxios.js"
+import { useFirebase } from "../../../hooks/useFirebase.js";
+import { dataBase } from "../../../firebaseConfig.js";
+import { collection, addDoc} from "firebase/firestore";
 
 export function Register() {
   const [confirmRegister, setConfirmRegister] = useState(false);
 
-  const {data: dataUsers} = useAxios("http://localhost:4000/users");
+  const {data: dataUsers} = useFirebase("users");
 
   const [emailVerify, setEmailVerify] = useState(false);
   const [nameUserVerify, setNameUserVerify] = useState(true); 
@@ -41,7 +43,8 @@ export function Register() {
     }
     else{
       //Enviar los datos al servidor
-      axios.post("http://localhost:4000/users", data);
+      const registerCollection = collection(dataBase, "users");
+      addDoc(registerCollection, data)
       setConfirmRegister(true)
     }
   };

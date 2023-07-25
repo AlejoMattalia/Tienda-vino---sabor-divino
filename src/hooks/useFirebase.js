@@ -1,13 +1,30 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
 import {dataBase} from "../firebaseConfig.js";
-import { getDocs, collection, query, where} from "firebase/firestore";
+import { getDocs, collection, query, where, onSnapshot} from "firebase/firestore";
 
 //Función para obtener datos de una api
 export function useFirebase(collectionDB, category) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useEffect(()=>{
+    const unSuscribe = onSnapshot(collection(dataBase, collectionDB), (date)=>{
+      const dataArray = [];
+    
+      date.forEach((doc)=>{
+        dataArray.push({id: doc.id, ...doc.data()})
+      });
+
+      setData(dataArray);
+    });
+
+
+    return ()=> unSuscribe();
+  },[collectionDB])
+
+
 
   useEffect(() => {
     let itemsComplete = collection(dataBase, collectionDB);

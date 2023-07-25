@@ -1,7 +1,7 @@
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { CardLogin } from "./card/CardLogin.jsx";
 import { useContext, useState } from "react";
-import { useAxios } from "../../../hooks/useAxios.js";
+import { useFirebase } from "../../../hooks/useFirebase.js";
 import "./Login.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -10,8 +10,10 @@ export function Login() {
   //Traemos variables del contexto Auth
   const { userName, setUserName, setConfirmLogin } = useContext(AuthContext);
   //Guardamos la informacion de los usuarios en la variable dataUser
-  const { data: dataUser } = useAxios("http://localhost:4000/users");
+  const {data: dataUser} = useFirebase("users");
   const [message, setMessage] = useState(undefined);
+
+  console.log(dataUser)
 
   const submitForm = (data) => {
     //Traer al usuario para enviar el email

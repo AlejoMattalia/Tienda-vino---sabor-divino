@@ -4,8 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import "../Comments.css";
 
 export function ModalComment(props) {
-  console.log(props.object);
-
   return (
     <Modal
       {...props}
@@ -15,7 +13,7 @@ export function ModalComment(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          <div style={{display: "flex", height: "30px"}}>
+          <div style={{display: "flex", gap: "10px", height: "30px"}}>
             <p style={{color: "#000"}}>{props.object.name}</p>
             <Rating name="read-only" value={props.object.value} readOnly />{" "}
           </div>
