@@ -19,6 +19,7 @@ export function NavBar({
   toggleIcon,
   classLi,
   handleLiClick,
+  togglePages
 }) {
   const { classActiveSearch, input, setInput, toggleSearch } =
     useContext(ConfigContext);
@@ -42,25 +43,25 @@ export function NavBar({
 
           {/* Listado de paginas */}
           <ul className={classUl}>
-            <li>
+            <li onClick={togglePages}>
               <Link to={"/"} className="list-pages-active">
                 Inicio
               </Link>
             </li>
             <li>
-              <Dropdown handleLiClick={handleLiClick} />
+              <Dropdown handleLiClick={handleLiClick} togglePages={togglePages}/>
             </li>
-            <li className={classLi}>
+            <li className={classLi} onClick={togglePages}>
               <Link to={"/blog"} className="list-pages">
                 Blog
               </Link>
             </li>
-            <li className={classLi}>
+            <li className={classLi} onClick={togglePages}>
               <Link to={"/comments"} className="list-pages">
                 Comentarios
               </Link>
             </li>
-            <li className={classLi}>
+            <li className={classLi} onClick={togglePages}>
               <Link to={"/contact"} className="list-pages">
                 Contacto
               </Link>

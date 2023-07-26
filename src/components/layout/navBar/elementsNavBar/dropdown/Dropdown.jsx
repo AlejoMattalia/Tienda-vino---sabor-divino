@@ -2,7 +2,7 @@ import { NavDropdown } from "react-bootstrap";
 import "./Dropdown.css";
 import { Link } from "react-router-dom";
 
-export function Dropdown({ handleLiClick }) {
+export function Dropdown({ handleLiClick, togglePages }) {
   return (
     // Cuando se hace click en Catalogo, aparacen las opciones (combos o vinos)
     <>
@@ -21,6 +21,7 @@ export function Dropdown({ handleLiClick }) {
               border: "none",
               borderRadius: "10px 10px 0 0",
             }}
+            onClick={togglePages}
           >
             Combos
           </NavDropdown.Item>
@@ -33,6 +34,7 @@ export function Dropdown({ handleLiClick }) {
               color: "#000",
               border: "none"
             }}
+            onClick={togglePages}
           >
             Vinos Tintos
           </NavDropdown.Item>
@@ -46,6 +48,7 @@ export function Dropdown({ handleLiClick }) {
               border: "none",
               borderRadius: "0 0 10px 10px",
             }}
+            onClick={togglePages}
           >
             Vinos Blancos
           </NavDropdown.Item>

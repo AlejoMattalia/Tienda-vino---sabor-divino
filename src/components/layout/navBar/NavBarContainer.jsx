@@ -24,6 +24,11 @@ export function NavBarContainer() {
     setMenuOpnen(!menuOpnen);
   };
 
+  const togglePages = ()=>{
+    setMenuOpnen(false);
+    toggleMenu()
+  }
+
   //Función para que cuando se de click en la seccion catalogo y se muestren la opciones(combos, vinos), Los otros elementos li(blog, comentarios, contactos) se muevan 65px hacia abajo, cuando la pagina sea menor a 850px
   const handleLiClick = () => {
     if (widthPage < 851) {
@@ -39,6 +44,7 @@ export function NavBarContainer() {
       toggleIcon={toggleIcon}
       classLi={classLi}
       handleLiClick={handleLiClick}
+      togglePages={togglePages}
     />
   );
 }

@@ -6,6 +6,10 @@ import { deleteDoc, collection, doc,  } from "firebase/firestore"
 import { dataBase } from "../../../firebaseConfig";
 
 export function CommentsContainer() {
+  //Abrir el modal para editar el comentario
+  const [showModalEditComment, setShowModalEditComment] = useState(false);
+
+  const [selectedComment, setSelectedComment] = useState({id: "", name: "", value: "", comment: ""})
 
   //Traemos el userName para que el usuario pueda eliminar el comentario
   const {userName} = useContext(AuthContext);
@@ -16,7 +20,7 @@ export function CommentsContainer() {
   const [selectedObject, setSelectedObject] = useState({});
   const {data: dataComment} = useFirebase("comment")
 
-  
+  //Borrar el comentario
   const deleteComment = (id)=>{
     const collectionComment = collection(dataBase ,"comment")
     deleteDoc(doc(collectionComment, id))
@@ -35,7 +39,11 @@ export function CommentsContainer() {
     onClickModal,
     setModalShowComment,
     selectedObject,
-    deleteComment
+    deleteComment,
+    setShowModalEditComment,
+    showModalEditComment,
+    setSelectedComment,
+    selectedComment
   };
 
   

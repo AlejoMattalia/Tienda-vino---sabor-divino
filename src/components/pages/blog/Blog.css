@@ -1,6 +1,7 @@
 @import "../../../App.css";
 
 .contianer-blog {
+    min-height: 100vh;
     background: hsl(0, 0%, 8%);
     padding: 50px;
     display: flex;

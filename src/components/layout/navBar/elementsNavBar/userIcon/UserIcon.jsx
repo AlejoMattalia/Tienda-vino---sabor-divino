@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext} from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./UserIcon.css";
 import { Button } from "@mui/material";
@@ -6,15 +6,20 @@ import { AuthContext } from "../../../../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { EditUser } from "../../../../common/editUser/EditUser";
 import { Alert } from "./Alert.jsx";
+import { dataBase } from "../../../../../firebaseConfig.js";
+import { collection, deleteDoc, doc } from "firebase/firestore";
 
 export function UserIcon() {
   //Se trae del contexto el nombre con el que se registro el usuario, y la confirmacion si inicio sesion
-  const { confirmLogin, userName, setConfirmLogin, setUserName } = useContext(AuthContext);
+  const { confirmLogin, userName, setConfirmLogin, setUserName } =
+    useContext(AuthContext);
   const [viewFrame, setViewFrame] = useState(false); //Variable para mostrar o ocultar el cuadro
-  const [editUserConfirm, setEditUserConfirm] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
-  const [alertSingOff, setAlertSingOff] = useState(false);
-  const [alertShow, setAlertShow] = useState(false);
+  const [editUserConfirm, setEditUserConfirm] = useState(false); //confirmacion para editar el usuario
+  const [modalShow, setModalShow] = useState(false); //Abrir modal
+  const [alertSingOff, setAlertSingOff] = useState(false); //Confirmar para cerrar sesion
+  const [alertShowSingOff, setAlertShowSingOff] = useState(false); //Manejo del modal cerrar sesion
+  const [alertDeleteAccount, setAlertDeleteAccount] = useState(false); //Borrar cuenta
+  const [alertShowDeleteAccount, setAlertShowDeleteAccount] = useState(false);
 
   //Funcion para mostrar o ocultar cuadro
   const toggleFrame = () => {
@@ -28,30 +33,32 @@ export function UserIcon() {
   };
 
   const deleteUser = () => {
-    console.log("Eliminaste cuenta");
+    setAlertShowDeleteAccount(false);
+    
+    const collectionUsers = collection(dataBase, "users");
+    deleteDoc(doc(collectionUsers, userName.id));
+
+    setConfirmLogin(false)
+    setUserName({
+      ...userName,
+      name: "",
+      email: "",
+      password: "",
+    });
   };
 
   const SingOffUser = () => {
+    console.log("Cerraste sesion");
     setConfirmLogin(false);
     setUserName({
       ...userName,
       name: "",
       email: "",
-      password: ""
-    })
-    setAlertShow(false)
+      password: "",
+    });
+    setAlertShowSingOff(false);
   };
 
-  useEffect(() => {
-    const rootElement = document.documentElement;
-    const currentOverflow = rootElement.style.overflow;
-
-    if (currentOverflow === "hidden" && modalShow === false) {
-      rootElement.style.overflow = "";
-    } else {
-      rootElement.style.overflow = "hidden";
-    }
-  }, [modalShow]);
 
   return (
     // Icono del usuario
@@ -80,20 +87,44 @@ export function UserIcon() {
               </Button>
               <Button
                 variant="text"
-                onClick={() => (setAlertSingOff(true), setAlertShow(true))}
+                onClick={() => (
+                  setAlertSingOff(true), setAlertShowSingOff(true)
+                )}
                 className="SignOff"
               >
                 Cerrar sesión
               </Button>
               <Button
                 variant="contained"
-                onClick={deleteUser}
+                onClick={() => (
+                  setAlertDeleteAccount(true), setAlertShowDeleteAccount(true)
+                )}
                 className="button-delete-account"
               >
                 Eliminar Cuenta
               </Button>
 
-              {alertSingOff && <Alert show={alertShow} onHide={() => setAlertShow(false)} title="Cerrar sesión" text="¿Estás seguro que deseas cerrar sesión?" textButton="Cerrar Sesión" onClick={SingOffUser}/>}
+              {alertSingOff && (
+                <Alert
+                  show={alertShowSingOff}
+                  onHide={() => setAlertShowSingOff(false)}
+                  title="Cerrar sesión"
+                  text="¿Estás seguro que deseas cerrar sesión?"
+                  textButton="Cerrar Sesión"
+                  onClick={SingOffUser}
+                />
+              )}
+
+              {alertDeleteAccount && (
+                <Alert
+                  show={alertShowDeleteAccount}
+                  onHide={() => setAlertShowDeleteAccount(false)}
+                  title="Eliminar cuenta"
+                  text="¿Estás seguro que deseas eliminar la cuenta?"
+                  textButton="Eliminar cuenta"
+                  onClick={deleteUser}
+                />
+              )}
             </div>
           ) : (
             // Si todavia no inicio sesión, se mostrara que no inicio sesión y le da la opcion para iniciar sesión

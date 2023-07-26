@@ -3,7 +3,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 // import "./Comments.css";
 import { ModalComment } from "./elementsComments/ModalComments.jsx";
 import { AddComment } from "./elementsComments/AddComment.jsx";
-import { Loading } from "../../layout/Loading.jsx"
+import { Loading } from "../../layout/Loading.jsx";
+import EditIcon from "@mui/icons-material/Edit";
+import { ModalEditComment } from "./elementsComments/ModalEditComment.jsx";
 
 export function Comments({ data }) {
   const {
@@ -13,7 +15,11 @@ export function Comments({ data }) {
     setModalShowComment,
     onClickModal,
     selectedObject,
-    deleteComment
+    deleteComment,
+    setShowModalEditComment,
+    showModalEditComment,
+    setSelectedComment,
+    selectedComment
   } = data;
 
   return (
@@ -22,8 +28,8 @@ export function Comments({ data }) {
 
       <div className="container-section-comments">
         <div className="section-comments">
-          {dataComment !== null ?
-            (dataComment.length !== 0 ? (
+          {dataComment !== null ? (
+            dataComment.length !== 0 ? (
               dataComment.map((el) => {
                 let comment;
                 if (el.comment.length < 150) {
@@ -47,9 +53,30 @@ export function Comments({ data }) {
                       </div>
 
                       {userName.name === el.name && (
-                        <IconButton className="buttonDelete-comment" onClick={()=>deleteComment(el.id)}>
-                          <DeleteIcon />
-                        </IconButton>
+                        <>
+                          <IconButton
+                            className="buttonDelete-comment"
+                            onClick={() => deleteComment(el.id)}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+
+                          <IconButton
+                            className="buttonEdit-comment"
+                            onClick={() => {
+                              setSelectedComment({
+                                id: el.id,
+                                value: el.value,
+                                comment: el.comment
+                              });
+                              setShowModalEditComment(true);
+                            }}
+                          >
+                            <EditIcon />
+                          </IconButton>
+
+                          <ModalEditComment show={showModalEditComment} onHide={()=> setShowModalEditComment(false)} data={selectedComment}/>
+                        </>
                       )}
                     </div>
 
@@ -85,12 +112,13 @@ export function Comments({ data }) {
               })
             ) : (
               <p className="no-comments">NO HAY COMENTARIOS</p>
-            )):
-              <Loading/>
-            }
+            )
+          ) : (
+            <Loading />
+          )}
         </div>
 
-        <AddComment/>
+        <AddComment />
       </div>
     </section>
   );

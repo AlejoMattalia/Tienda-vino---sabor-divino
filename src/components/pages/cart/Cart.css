@@ -1,6 +1,7 @@
 @import "../../../App.css";
 
 .container-cart {
+    min-height: 100vh;
     background: #fff;
 }
 

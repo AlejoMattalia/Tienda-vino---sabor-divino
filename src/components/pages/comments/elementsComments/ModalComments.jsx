@@ -15,7 +15,7 @@ export function ModalComment(props) {
         <Modal.Title id="contained-modal-title-vcenter">
           <div style={{display: "flex", gap: "10px", height: "30px"}}>
             <p style={{color: "#000"}}>{props.object.name}</p>
-            <Rating name="read-only" value={props.object.value} readOnly />{" "}
+            <Rating name="read-only" value={props.object.value} readOnly style={{position: "relative", top: "6px"}}/>{" "}
           </div>
         </Modal.Title>
       </Modal.Header>

@@ -1,6 +1,7 @@
 @import "../../../App.css";
 
 .comments-container {
+    min-height: 100vh;
     padding: 50px 20px;
     background-color: hsl(0, 0%, 8%);
 }
@@ -50,8 +51,15 @@
 .buttonDelete-comment {
     position: relative;
     bottom: 10px;
-    left: 50px;
+    left: 60px;
     color: rgb(255, 20, 20) !important;
+}
+
+.buttonEdit-comment{
+    position: relative;
+    bottom: 10px;
+    right: 15px;
+    color: blue !important;
 }
 
 .comment {
@@ -165,7 +173,7 @@
 
 
 .fade{
-    background-color: rgba(0, 0, 0, 0.150) !important;
+    background-color: rgba(0, 0, 0, 0.500) !important;
 }
 
 .no-comments{
@@ -175,6 +183,26 @@
     color: #fff;
 }
 
+.button-comment-edit{
+    background-color: var(--mainColor) !important;
+}
+
+.text-view-message-edit-comment {
+    padding: 5px 10px 0px 10px;
+    margin: 10px 0px 0px 55px;
+    width: 250px;
+    height: 55px;
+    border: 1px solid var(--mainColor);
+    border-radius: 10px;
+    position: relative;
+    left: 50px;
+}
+
+.text-view-message-edit-comment p {
+    color: var(--mainColor);
+    font-size: 13px;
+    text-align: center;
+}
 
 
 @media (max-width: 1075px){
@@ -238,13 +266,34 @@
     }  
 }
 
+@media (max-width: 575px){
+    .text-view-message-edit-comment {
+        left: 75px;
+    }
+}
+
 @media (max-width: 545px){
     .container-section-comments {
         padding: 0;
     }
+
+    .text-view-message-edit-comment {
+        left: 65px;
+    }
+}
+
+@media (max-width: 525px){
+    .text-view-message-edit-comment {
+        left: 50px;
+    }
 }
 
 @media (max-width: 495px){
+
+    .text-view-message-edit-comment {
+        left: 35px;
+    }
+
     .container-addComment {
         width: 100%;
     }
@@ -267,14 +316,19 @@
     }
 
     .buttonDelete-comment {
-        position: relative;
-        bottom: 10px;
-        left: 100px;
-        color: rgb(255, 20, 20) !important;
+        left: 130px;
+    }
+
+    .buttonEdit-comment{
+        left: 50px;
     }
 }
 
 @media (max-width: 458px){
+    .text-view-message-edit-comment {
+        left: 20px;
+    }
+
     .card-comments {
         height: 250px;
     }
@@ -282,9 +336,22 @@
     .comment {
         max-height: 170px;
     }
+
+    .buttonDelete-comment {
+        left: 100px;
+    }
+
+    .buttonEdit-comment{
+        left: 20px;
+    }
 }
 
 @media (max-width: 420px){
+
+    .text-view-message-edit-comment {
+        left: 0px;
+    }
+
     .card-comments {
         width: 90%;
     }
@@ -296,9 +363,26 @@
     .comment {
         max-height: 160px;
     }
+
+    .buttonDelete-comment {
+        left: 130px;
+    }
+
+    .buttonEdit-comment{
+        left: 50px;
+    }
 }
 
+@media (max-width: 380px){
+    .text-view-message-edit-comment {
+        left: -10px;
+    }
+}
 @media (max-width: 365px){
+    .text-view-message-edit-comment {
+        left: -20px;
+    }
+
     .card-comments {
         width: 100%;
     }

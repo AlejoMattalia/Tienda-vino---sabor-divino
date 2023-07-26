@@ -13,8 +13,6 @@ export function Login() {
   const {data: dataUser} = useFirebase("users");
   const [message, setMessage] = useState(undefined);
 
-  console.log(dataUser)
-
   const submitForm = (data) => {
     //Traer al usuario para enviar el email
     const user = dataUser.find((user)=>user.name.trim() === data.name.trim());

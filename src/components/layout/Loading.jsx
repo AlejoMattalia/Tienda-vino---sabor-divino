@@ -10,7 +10,7 @@ export function Loading() {
         justifyContent: "center",
         width: "100%",
         height: "100vh",
-        background: "hsl(0, 0%, 5%)",
+        background: "hsl(0, 0%, 8%)",
         paddingBottom: "100px"
       }}
     >

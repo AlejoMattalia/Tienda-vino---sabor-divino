@@ -14,7 +14,7 @@ export function Mask() {
       <div className="mask" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
         <div className="d-flex flex-column justify-content-center align-items-center h-100">
           <h1 className="text-white mb-0">¿Querés un vino?</h1>
-          <h2 className="text-white mt-4">Conocé Sabor Divino</h2>
+          <h3 className="text-white mt-4">Conocé Sabor Divino</h3>
 
           <div className="mt-5">
             <button className="buttons-links combos">

@@ -2,7 +2,7 @@
 import { CardLogin } from "./card/CardLogin.jsx";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Login.css";
 import { useFirebase } from "../../../hooks/useFirebase.js";
 import { dataBase } from "../../../firebaseConfig.js";
@@ -18,6 +18,18 @@ export function Register() {
   const [timeMessage, setTimeMessage] = useState(false);
 
 
+  //useEffect para mostrar por 5 segundos el aviso de que superaste el stock
+  useEffect(() => {
+    if (timeMessage) {
+      const timeout = setTimeout(() => {
+        setTimeMessage(false);
+      }, 3500);
+
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [timeMessage]);
 
   const handleSubmitForm = (data) => {
 
