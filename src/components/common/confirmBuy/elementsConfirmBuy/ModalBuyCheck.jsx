@@ -2,9 +2,20 @@ import { Button } from "@mui/material";
 import { useContext } from "react";
 import { Modal } from "react-bootstrap";
 import { CartContext } from "../../../../context/CartContext";
+import { Link } from "react-router-dom";
 
 export function ModalBuyCheck(props) {
-  const { cart} = useContext(CartContext);
+  const { cart } = useContext(CartContext);
+
+  const handleButtonExit = ()=>{
+    props.onHide();
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 1000);
+  }
 
   return (
     <Modal
@@ -52,13 +63,15 @@ export function ModalBuyCheck(props) {
           justifyContent: "space-evenly",
         }}
       >
-        <Button
-          variant="outlined"
-          style={{ background: "rgb(255, 20, 20)", color: "#fff" }}
-          onClick={props.onHide}
-        >
-          SALIR
-        </Button>
+        <Link to="/">
+          <Button
+            variant="outlined"
+            style={{ background: "rgb(255, 20, 20)", color: "#fff", border: "none"}}
+            onClick={handleButtonExit}
+          >
+            SALIR
+          </Button>
+        </Link>
       </Modal.Footer>
     </Modal>
   );

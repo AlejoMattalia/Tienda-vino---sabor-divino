@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { Link } from "react-router-dom";
 
-export function ModalError(props) {
+export function ModalErrorLogin(props) {
   return (
     <Modal
       {...props}

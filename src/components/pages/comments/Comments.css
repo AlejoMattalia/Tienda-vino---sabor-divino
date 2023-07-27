@@ -125,6 +125,12 @@
     color: var(--textColor);
 }
 
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+    color: #fff !important;
+}
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+    color: #fff !important;
+}
 .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
     color: #ffffff !important
 }

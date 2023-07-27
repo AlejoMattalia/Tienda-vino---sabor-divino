@@ -10,8 +10,8 @@ export function Blog() {
       {news.map((el) => {
         return (
           <>
-          <Fade direction="left" duration={2000}>
-            <section className="container-blog-news" key={el.id}>
+          <Fade direction="left" duration={2000} key={el.id}>
+            <section className="container-blog-news" >
               <div className="container-img">
                 <a
                   href={el.link}

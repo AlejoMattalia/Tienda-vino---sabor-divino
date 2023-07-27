@@ -5,6 +5,8 @@ import { CartProduct } from "./elementsCart/CartProduct.jsx";
 import { CompanyInfo } from "../../common/companyInfo/CompanyInfo.jsx";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/AuthContext";
+import { ModalErrorLogin } from "../../common/ModalErrorLogin";
 
 export function Cart() {
   const {
@@ -16,17 +18,28 @@ export function Cart() {
     verifyProductCart,
   } = useContext(CartContext);
 
+  const {confirmLogin} = useContext(AuthContext);
+
   const navigate = useNavigate();
 
-  //Cuando haga click en agregar al carrito hace ejecutar un componente que verifica si el usuario se registro
+  const [showConfirmLogin, setShowConfirmLogin] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
+  //Cuando haga click en agregar al carrito hace ejecutar un componente que verifica si el usuario se registro
   const functionButtonCheckout = () => {
     if (cart.length === 0) {
       setVerifyProductCart(true);
       setTimeMessage(true);
     } else {
       setVerifyProductCart(false);
-      navigate("/checkout")
+      if(confirmLogin){
+        navigate("/checkout");
+      }
+      else{
+        console.log("Estoy en verificar si se registro")
+        setShowConfirmLogin(true);
+        setModalShow(true)
+      }
     }
   };
 
@@ -81,6 +94,7 @@ export function Cart() {
             >
               Finalizar compra
             </Button>
+            {showConfirmLogin && <ModalErrorLogin show={modalShow} onHide={() => setModalShow(false)} text={"Debes iniciar sesión para finalizar la compra. Si no tenés una cuenta registrate"} title={"No pudiste finalizar la compra"}/>}
 
             {verifyProductCart && timeMessage && (
               <div className="text-ceroProducts">

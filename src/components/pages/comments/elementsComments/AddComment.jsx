@@ -5,7 +5,7 @@ import { AuthContext } from "../../../../context/AuthContext";
 import { useFormik } from "formik";
 import { collection, addDoc} from "firebase/firestore";
 import { dataBase } from "../../../../firebaseConfig";
-import { ModalError } from "../../../common/confirmBuy/elementsConfirmBuy/ModalError";
+import { ModalErrorLogin } from "../../../common/ModalErrorLogin";
 import * as Yup from "yup";
 
 
@@ -89,7 +89,7 @@ export function AddComment() {
 
       {
         verifylogin &&
-        <ModalError show={modalShow} onHide={() => setModalShow(false)} text={"Debes iniciar sesión para comentar. Si no tenés una cuenta registrate AQUÍ. Si ya tienes cuanta inicia sesión."} title={"No pudiste comentar"}/>
+        <ModalErrorLogin show={modalShow} onHide={() => setModalShow(false)} text={"Debes iniciar sesión para comentar. Si no tenés una cuenta registrate AQUÍ. Si ya tienes cuanta inicia sesión."} title={"No pudiste comentar"}/>
       }
     </section>
   );

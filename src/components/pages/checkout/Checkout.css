@@ -1,0 +1,65 @@
+@import "../../../App.css";
+
+.checkout-container{
+    background-color: hsl(0, 0%, 8%);
+    width: 100%;
+    padding: 50px;
+}
+
+.checkout-info{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-evenly;
+}
+
+.data-cardCredit{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: #242424 1px solid;
+    width: 350px;
+    padding: 20px;
+}
+
+.data-cardCredit p{
+    color: #fff;
+}
+
+
+.checkout-viewProducts{
+    width: 350px;
+    border: #242424 1px solid;
+    border-bottom: none;
+}
+
+.checkout-product{
+    min-height: 100px;
+    color: #fff;
+    padding: 5px 5px 0px 20px;
+    border-bottom: #242424 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkout-product .name{
+    font-size: 13px;
+}
+
+.checkout-product .price-quantity{
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    position: relative;
+    bottom: 10px;
+}
+.checkout-product .quantity{
+    color: #fff;
+    font-size: 10px;
+}
+
+.checkout-product .price{
+    color: #fff;
+    font-size: 10px;
+}
