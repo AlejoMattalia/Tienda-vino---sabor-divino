@@ -7,14 +7,9 @@ import * as Yup from "yup";
 export function CheckoutContainer() {
 
   //Funcion para comprar los productos
-  const {setModalShow} = useContext(CartContext);
+  const {setModalShow, setCardData} = useContext(CartContext);
   const [showConfirmBuy, setShowConfirmBuy] = useState(false);
-  const functionBuy = ()=>{
-      setModalShow(true);
-      setShowConfirmBuy(true);
-  } 
    
-  // const [numberCreditCard, setNumberCreditCard] = useState("");
   const handleNumberCard = (event)=>{
     const inputText = event.target.value;
     const digitsOnly = inputText.replace(/\s/g, '');
@@ -32,7 +27,9 @@ export function CheckoutContainer() {
   }
 
   const onSubmit = (data)=>{
-    console.log(data)
+    setModalShow(true);
+    setShowConfirmBuy(true);
+    setCardData(data)
   }
 
   const formik = useFormik({
@@ -51,7 +48,6 @@ export function CheckoutContainer() {
 
   //Envimos la data al componente checkOut
   const data = {
-    functionBuy,
     showConfirmBuy,
     handleNumberCard,
     formik

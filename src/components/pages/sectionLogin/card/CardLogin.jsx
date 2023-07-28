@@ -7,23 +7,25 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
+import { Phone } from "./elementsCard/Phone";
 
 export function CardLogin({
   titleCard,
   textBotton,
   viewEmail,
+  viewPhone,
   confirmAccount,
   submitForm,
-  validateEmail,
   emailVerify,
   nameUserVerify,
-  timeMessage
+  timeMessage,
 }) {
   //Valor iniciar del usuario
   const valueInitial = {
     name: "",
     email: "",
     password: "",
+    phone: "",
   };
 
   //Validaciones
@@ -37,7 +39,7 @@ export function CardLogin({
         .max(16, "El nombre debe tener menos de 16 caracteres"),
 
       email:
-        validateEmail &&
+        viewEmail &&
         Yup.string()
           .required("Debes ingresar un email")
           .matches(
@@ -51,6 +53,10 @@ export function CardLogin({
           /^(?=.*[A-Z])(?=.*\d).*$/,
           "La contraseña debe contener al menos un número y una letra mayúscula"
         ),
+
+      phone:
+        viewPhone &&
+        Yup.number().required("Debes ingresar el numero de teléfono"),
     }),
 
     onSubmit: submitForm,
@@ -89,6 +95,15 @@ export function CardLogin({
             errors={errors.name}
             helperText={errors.name}
           />
+
+          {viewPhone && (
+            <Phone
+              onChange={handleChange}
+              values={values.phone}
+              errors={errors.phone}
+              helperText={errors.phone}
+            />
+          )}
 
           {viewEmail && (
             <Email

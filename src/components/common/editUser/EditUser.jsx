@@ -2,6 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import { EmailEdit } from "./elementsEditUser/EmailEdit";
 import { UserNameEdit } from "./elementsEditUser/UserNameEdit";
 import { Password } from "./elementsEditUser/Password";
+import { Phone } from "./elementsEditUser/Phone";
 import { PasswordRepeat } from "./elementsEditUser/PasswordRepeat";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
@@ -9,7 +10,7 @@ import "./EditUser.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Button } from "@mui/material";
-import {dataBase} from "../../../firebaseConfig"
+import { dataBase } from "../../../firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
 
 export function EditUser(props) {
@@ -44,7 +45,6 @@ export function EditUser(props) {
     }
   }, [dateEqual]);
 
-
   const [errorEditUser, setErrorEditUser] = useState(false);
   useEffect(() => {
     if (errorEditUser) {
@@ -58,13 +58,12 @@ export function EditUser(props) {
     }
   }, [errorEditUser]);
 
-
-
   //Funcion onSubmit para editar el usuario
   const onSubmit = (data) => {
     const information = {
       name: data.name || userName.name,
       email: data.email || userName.email,
+      phone: data.phone || userName.phone,
       password: data.password || userName.password,
       repeatPassword: data.repeatPassword || userName.password,
     };
@@ -72,24 +71,30 @@ export function EditUser(props) {
     if (
       information.name === userName.name &&
       information.email === userName.email &&
+      information.phone === userName.phone &&
       information.password === userName.password
     ) {
-      setDateEqual(true)
-
+      setDateEqual(true);
     } else {
-      updateDoc(doc(dataBase, "users", userName.id), {email: information.email, name: information.name, password: information.password})
-      .then(() => {
-        setUserName({
-          ...userName,
-          name: information.name,
-          email: information.email,
-          password: information.password,
-        });
-        setVerifyEditTrue(true);
+      updateDoc(doc(dataBase, "users", userName.id), {
+        email: information.email,
+        name: information.name,
+        phone: information.phone,
+        password: information.password,
       })
-      .catch(() => {
-        setErrorEditUser(true);
-      });
+        .then(() => {
+          setUserName({
+            ...userName,
+            name: information.name,
+            email: information.email,
+            phone: information.phone,
+            password: information.password,
+          });
+          setVerifyEditTrue(true);
+        })
+        .catch(() => {
+          setErrorEditUser(true);
+        });
     }
   };
 
@@ -98,6 +103,7 @@ export function EditUser(props) {
     initialValues: {
       name: "",
       email: "",
+      phone: "",
       password: "",
       repeatPassword: "",
     },
@@ -119,6 +125,8 @@ export function EditUser(props) {
           'El correo electrónico debe tener un símbolo "@"'
         ),
 
+      phone: Yup.number("Debes ingresar tu numero de telefono"),
+
       password: Yup.string()
         .nullable()
         .matches(
@@ -139,7 +147,10 @@ export function EditUser(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}>
+      <Modal.Header
+        closeButton
+        style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}
+      >
         <Modal.Title id="contained-modal-title-vcenter">
           Editar usuario
         </Modal.Title>
@@ -159,7 +170,13 @@ export function EditUser(props) {
               error={errors.email}
             />
           </div>
+
           <div className="divInput">
+            <Phone
+              phone={userName.phone}
+              onChange={handleChange}
+              error={errors.phone}
+            />
             <Password
               password={userName.password}
               onChange={handleChange}
@@ -176,11 +193,11 @@ export function EditUser(props) {
             Editar
           </Button>
 
-          {dateEqual &&
+          {dateEqual && (
             <div className="text-view-message-edit">
               <p>No pudiste editar el usuario, los datos son iguales.</p>
             </div>
-          }
+          )}
 
           {verifyEditTrue && (
             <div className="text-view-message-edit">
@@ -188,11 +205,14 @@ export function EditUser(props) {
             </div>
           )}
 
-          {errorEditUser &&
+          {errorEditUser && (
             <div className="text-view-message-edit">
-              <p>Error no pudimos editar el usuario. Vuelve a intentarlo más tarde</p>
+              <p>
+                Error no pudimos editar el usuario. Vuelve a intentarlo más
+                tarde
+              </p>
             </div>
-          }
+          )}
         </form>
       </Modal.Body>
     </Modal>

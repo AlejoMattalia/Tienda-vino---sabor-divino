@@ -86,6 +86,7 @@ export function Register() {
         titleCard="Registrarse"
         textBotton="Registrarse"
         viewEmail={true}
+        viewPhone={true}
         confirmAccount={true}
         submitForm={handleSubmitForm}
         validateEmail={true}

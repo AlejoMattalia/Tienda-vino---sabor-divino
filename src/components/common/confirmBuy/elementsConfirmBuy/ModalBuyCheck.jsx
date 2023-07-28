@@ -1,21 +1,28 @@
-import { Button } from "@mui/material";
-import { useContext } from "react";
+import { Button, Skeleton } from "@mui/material";
+import { useContext, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { CartContext } from "../../../../context/CartContext";
 import { Link } from "react-router-dom";
 
 export function ModalBuyCheck(props) {
-  const { cart } = useContext(CartContext);
+  const { cart, orderBuy } = useContext(CartContext);
+  const [handleSkeletor, setHandleSkeletor] = useState(false);
 
-  const handleButtonExit = ()=>{
+  const handleButtonExit = () => {
     props.onHide();
     setTimeout(() => {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
-    }, 1000);
-  }
+    }, 4000);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHandleSkeletor(true);
+    }, 7000);
+  }, []);
 
   return (
     <Modal
@@ -25,7 +32,6 @@ export function ModalBuyCheck(props) {
       centered
     >
       <Modal.Header
-        closeButton
         style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}
       >
         <Modal.Title
@@ -42,14 +48,46 @@ export function ModalBuyCheck(props) {
         }}
       >
         <h4
-          style={{ color: "#fff", textAlign: "center", marginBottom: "30px" }}
+          style={{ color: "#fff", textAlign: "center", marginBottom: "40px" }}
         >
-          Felicitaciones!! Compraste los productos:
+          <span style={{ borderBottom: "1px solid #fff" }}>
+            Orden de compra:
+          </span>
+
+          {handleSkeletor ? (
+            <>
+            <br/>
+            <span style={{ fontSize: "15px", color: "#d6d6d6" }}>
+              {orderBuy}
+            </span>
+            </>
+          ) : (
+            <Skeleton
+              variant="rectangular"
+              width={200}
+              height={20}
+              style={{
+                backgroundColor: "#5f5f5f",
+                opacity: 0.1,
+                marginTop: "10px"
+              }}
+            />
+          )}
         </h4>
+        <h5
+          style={{
+            color: "#fff",
+            textAlign: "center",
+            marginBottom: "15px",
+            borderBottom: "1px solid #fff",
+          }}
+        >
+          Compraste los productos:
+        </h5>
 
         {cart.map((el) => {
           return (
-            <p key={el.id} style={{ color: "#e7e7e7", textAlign: "center" }}>
+            <p key={el.id} style={{ color: "#d6d6d6", textAlign: "center" }}>
               {el.quantity} {el.name}
             </p>
           );
@@ -66,7 +104,11 @@ export function ModalBuyCheck(props) {
         <Link to="/">
           <Button
             variant="outlined"
-            style={{ background: "rgb(255, 20, 20)", color: "#fff", border: "none"}}
+            style={{
+              background: "rgb(255, 20, 20)",
+              color: "#fff",
+              border: "none",
+            }}
             onClick={handleButtonExit}
           >
             SALIR

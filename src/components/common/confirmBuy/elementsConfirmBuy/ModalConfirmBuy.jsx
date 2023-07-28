@@ -1,9 +1,40 @@
 import { useContext } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { CartContext } from "../../../../context/CartContext";
+import { AuthContext } from "../../../../context/AuthContext";
+import { dataBase } from "../../../../firebaseConfig.js";
+import { collection, addDoc, serverTimestamp, updateDoc, doc} from "firebase/firestore"
 
 export function ModalConfirmBuy(props) {
-  const { totalProducts } = useContext(CartContext);
+  const { totalProducts, cart, cardData, setOrderBuy } = useContext(CartContext);
+  const { userName } = useContext(AuthContext);
+
+  console.log(userName)
+
+
+  const handleButtonBuy = ()=>{
+    props.setModalShowBuyCheck(true)
+
+    const order = {
+      user: userName,
+      items: cart,
+      buyer: cardData,
+      date: serverTimestamp(),
+      total: totalProducts
+    }
+
+    //Enviar order con sus datos a la base de datos
+    const orderCollection = collection(dataBase, "orders");
+    addDoc(orderCollection, order)
+      .then((res)=> setOrderBuy(res.id))
+
+    //Modificar el stock del producto
+    cart.forEach((product)=>{
+      console.log(product)
+      updateDoc(doc(dataBase, "products", product.id), {stock: product.stock - product.quantity})
+    })
+
+  }
   
   return (
     <Modal
@@ -39,7 +70,7 @@ export function ModalConfirmBuy(props) {
       <Button
           variant="outlined"
           style={{ background: "rgb(3, 211, 3)", color: "#fff" }}
-          onClick={()=> props.setModalShowBuyCheck(true)}
+          onClick={handleButtonBuy}
         >
           COMPRAR
         </Button>

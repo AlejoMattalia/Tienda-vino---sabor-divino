@@ -32,6 +32,7 @@ export function Login() {
         name: data.name,
         password: data.password,
         email: user.email,
+        phone: user.phone,
         id: user.id
       });
 
@@ -95,9 +96,9 @@ export function Login() {
         titleCard="Iniciar Sesión"
         textBotton="Iniciar Sesión"
         viewEmail={false}
+        viewPhone={false}
         confirmAccount={false}
         submitForm={submitForm}
-        validateEmail={false}
       />
     </>
   );

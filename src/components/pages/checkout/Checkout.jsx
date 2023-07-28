@@ -17,7 +17,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 export function Checkout({ data }) {
   const { cart, calculateDiscountPrice } = useContext(CartContext);
   const {
-    functionBuy,
     showConfirmBuy,
     handleNumberCard,
     formik,
@@ -101,7 +100,7 @@ export function Checkout({ data }) {
               shrink: true,
             }}
             placeholder="MM-AA"
-            inputProps={{ maxLength: 24 }}
+            inputProps={{ maxLength: 24}}
             name="dueDate"
             onChange={formik.handleChange}
             value={formik.values.dueDate}
@@ -118,13 +117,15 @@ export function Checkout({ data }) {
             value={formik.values.securityCode}
             error={formik.errors.securityCode}
             helperText={formik.errors.securityCode}
+            inputProps={{
+              maxLength: 4,
+            }}
           />
 
           <Button
             type="submit"
             className="button-buy"
             variant="contained"
-            onClick={functionBuy}
           >
             Comprar
           </Button>

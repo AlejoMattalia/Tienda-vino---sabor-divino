@@ -13,6 +13,11 @@ export function CartContextProvider({ children }) {
   //O mostrar un mensaje que agregaste al carrito
   const [viewAlertAddProductCart, setViewAlertAddProductCart] = useState(false);
   
+  //Variable para guardar el id, que sera la orden de compra
+  const [orderBuy, setOrderBuy] = useState("");
+
+  //Guardar los datos de la tarjeta
+  const [cardData, setCardData] = useState({});
 
   //Variable donde se guardara el producto con su información
   const [product, setProduct] = useState({});
@@ -121,7 +126,11 @@ export function CartContextProvider({ children }) {
     setViewAlertAddProductCart,
     calculateTotalPrice,
     calculateDiscountPrice,
-    getTotalQuantity
+    getTotalQuantity,
+    cardData, 
+    setCardData,
+    setOrderBuy,
+    orderBuy
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 }
