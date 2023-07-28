@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ConfigContext } from "../../../context/ConfigContext";
 import { CartContext } from "../../../context/CartContext";
+import { AuthContext } from "../../../context/AuthContext";
 
 export function NavBar({
   classUl,
@@ -19,14 +20,16 @@ export function NavBar({
   toggleIcon,
   classLi,
   handleLiClick,
-  togglePages
+  togglePages,
 }) {
   const { classActiveSearch, input, setInput, toggleSearch } =
     useContext(ConfigContext);
 
   const { getTotalQuantity } = useContext(CartContext);
 
-  let total = getTotalQuantity()
+  const {userName} = useContext(AuthContext);
+
+  let total = getTotalQuantity();
 
   return (
     <>
@@ -49,7 +52,10 @@ export function NavBar({
               </Link>
             </li>
             <li>
-              <Dropdown handleLiClick={handleLiClick} togglePages={togglePages}/>
+              <Dropdown
+                handleLiClick={handleLiClick}
+                togglePages={togglePages}
+              />
             </li>
             <li className={classLi} onClick={togglePages}>
               <Link to={"/blog"} className="list-pages">
@@ -67,6 +73,12 @@ export function NavBar({
               </Link>
             </li>
           </ul>
+
+          {userName.name === "admin" && (
+            <Link to={"/dashboard"} className="admin">
+              <p>Admin</p>
+            </Link>
+          )}
 
           <div>
             {/* Icono del buscador */}
@@ -90,7 +102,7 @@ export function NavBar({
                 />
               </Badge>
             </Link>
-            
+
             <UserIcon />
 
             {/* Iconos del menu desplegable cuando la pagina sea menor a 850px */}

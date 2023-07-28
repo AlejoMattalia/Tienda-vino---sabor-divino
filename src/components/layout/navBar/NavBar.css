@@ -64,13 +64,37 @@
     top: 90px;
 }
 
+.admin{
+    position: absolute;
+    top: 20px;
+    right: 300px;
+    font-size: 30px;
+}
+
 @media (max-width: 1000px) {
     .containerNavBar nav ul {
         right: 80px;
     }
+
+    .admin{
+        right: 250px;
+    }
+}
+
+@media (max-width: 925px) {
+    .containerNavBar nav ul {
+        right: 80px;
+    }
+
+    .admin{
+        right: 200px;
+    }
 }
 
 @media (max-width: 850px) {
+    .admin{
+        right: 340px;
+    }
     .iconMenu {
         display: inline-block !important;
     }
@@ -109,5 +133,28 @@
     .classUl{
         position: relative;
         left: 0 !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .admin{
+        top: 30px;
+        font-size: 20px;
+        right: 280px;
+    }
+}
+
+@media (max-width: 485px) {
+    .admin{
+        font-size: 20px;
+        right: 230px;
+    }
+}
+
+@media (max-width: 415px) {
+    .admin{
+        top: 60px;
+        font-size: 20px;
+        right: 150px;
     }
 }

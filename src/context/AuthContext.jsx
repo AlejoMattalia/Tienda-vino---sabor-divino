@@ -8,7 +8,7 @@ export function AuthContextProvider({children}) {
   //Contexto sobre el registro e inicio de sesion
 
   const [confirmLogin, setConfirmLogin] = useState(false);
-  const [userName, setUserName] = useState({name: "", password: "", email: ""}); 
+  const [userName, setUserName] = useState({name: "", password: "", email: "", phone: ""}); 
 
   const data = {
     userName,
