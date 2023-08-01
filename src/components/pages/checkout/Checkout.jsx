@@ -24,7 +24,7 @@ export function Checkout({ data }) {
 
   return (
     <section className="checkout-container">
-      <Link to="/cart" style={{ color: "#fff" }} className="exit">
+      <Link to="/cart" style={{ color: "#000" }} className="exit">
         <p>
           <ArrowBackIcon /> VOLVER
         </p>
@@ -135,7 +135,7 @@ export function Checkout({ data }) {
               <div className="checkout-product" key={el.id}>
                 <img
                   src={el.img}
-                  alt=""
+                  alt="producto"
                   style={{ width: "65px", height: "65px" }}
                 />
 
