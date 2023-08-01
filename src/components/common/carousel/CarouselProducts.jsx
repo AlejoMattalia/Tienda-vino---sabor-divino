@@ -10,12 +10,12 @@ export function CarouselProducts({ title, array }) {
 
   const responsive = {
     superLargeDesktop: {
-      breakpoint: { max: 4000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3,
+      breakpoint: { max: 4000, min: 1250 },
+      items: 4,
+      slidesToSlide: 4,
     },
     desktop: {
-      breakpoint: { max: 1024, min: 900 },
+      breakpoint: { max: 1250, min: 900 },
       items: 3,
       slidesToSlide: 3,
     },

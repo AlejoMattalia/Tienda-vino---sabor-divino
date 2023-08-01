@@ -15,7 +15,7 @@ export function Login() {
     setConfirmLogin,
     setUserNameGoogle,
     userNameGoogle,
-    setLoginGoogle
+    setLoginGoogle,
   } = useContext(AuthContext);
   //Guardamos la informacion de los usuarios en la variable dataUser
   const { data: dataUser } = useFirebase("users");
@@ -30,10 +30,12 @@ export function Login() {
 
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
-      return (
-        user.email.trim() === data.email.trim() &&
-        user.password.trim() === data.password.trim()
-      );
+      if (user !== undefined && data !== undefined) {
+        return (
+          user.email.trim() === data.email.trim() &&
+          user.password.trim() === data.password.trim()
+        );
+      }
     });
 
     //Si es true, guardar los datos en la varible que se encuentra en el contexto
