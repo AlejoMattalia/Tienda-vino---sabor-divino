@@ -8,16 +8,13 @@ const CssTextField = styled(TextField)({
   "& .MuiInput-underline:after": {
     borderBottomColor: "#fff",
   },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: "#fff",
-    },
-    "&:hover fieldset": {
-      borderColor: "#fff",
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: "#fff",
-    },
+
+  "& .MuiInput-underline:before": {
+    borderBottom: "2px solid #fff",
+  },
+
+  "& .MuiInput-underline:hover:before": {
+    borderBottomColor: "#fff",
   },
 });
 
@@ -28,7 +25,7 @@ export function Email({ onChange, values, errors, helperText }) {
       <CssTextField
         id="custom-css-outlined-input"
         label="Email"
-        variant= "outlined"
+        variant= "standard"
         sx={{ borderBottom: "none" }}
         type="text"
         endAdornment={<InputAdornment position="end"></InputAdornment>}
@@ -37,6 +34,12 @@ export function Email({ onChange, values, errors, helperText }) {
         value={values}
         error={errors}
         helperText={helperText}
+        inputProps={{ style: { color: "#fff" } }}
+        InputLabelProps={{
+          style:{
+            color: "#fff"
+          }
+        }}
       />
     </FormControl>
   );
