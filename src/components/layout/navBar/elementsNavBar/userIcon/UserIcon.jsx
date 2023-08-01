@@ -1,4 +1,4 @@
-import { useState, useContext} from "react";
+import { useState, useContext } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import "./UserIcon.css";
 import { Button } from "@mui/material";
@@ -11,8 +11,15 @@ import { collection, deleteDoc, doc } from "firebase/firestore";
 
 export function UserIcon() {
   //Se trae del contexto el nombre con el que se registro el usuario, y la confirmacion si inicio sesion
-  const { confirmLogin, userName, setConfirmLogin, setUserName } =
-    useContext(AuthContext);
+  const {
+    confirmLogin,
+    userName,
+    setConfirmLogin,
+    setUserName,
+    loginGoogle,
+    userNameGoogle,
+    setUserNameGoogle,
+  } = useContext(AuthContext);
   const [viewFrame, setViewFrame] = useState(false); //Variable para mostrar o ocultar el cuadro
   const [editUserConfirm, setEditUserConfirm] = useState(false); //confirmacion para editar el usuario
   const [modalShow, setModalShow] = useState(false); //Abrir modal
@@ -34,11 +41,11 @@ export function UserIcon() {
 
   const deleteUser = () => {
     setAlertShowDeleteAccount(false);
-    
+
     const collectionUsers = collection(dataBase, "users");
     deleteDoc(doc(collectionUsers, userName.id));
 
-    setConfirmLogin(false)
+    setConfirmLogin(false);
     setUserName({
       ...userName,
       name: "",
@@ -48,31 +55,60 @@ export function UserIcon() {
   };
 
   const SingOffUser = () => {
-    console.log("Cerraste sesion");
     setConfirmLogin(false);
-    setUserName({
-      ...userName,
-      name: "",
-      email: "",
-      password: "",
-    });
+  
+    if (loginGoogle) {
+      setUserNameGoogle({
+        ...setUserNameGoogle,
+        name: "",
+        email: "",
+        phone: "",
+        photo: null, // Establecer la imagen del usuario en null al cerrar sesión con Google
+      });
+      
+    } else {
+      setUserName({
+        ...userName,
+        name: "",
+        email: "",
+        password: "",
+      });
+    }
     setAlertShowSingOff(false);
+    loginGoogle(false);
   };
-
 
   return (
     // Icono del usuario
+
     <div style={{ position: "relative", display: "inline-block" }}>
-      <AccountCircleIcon
-        onClick={toggleFrame}
-        sx={{
-          color: "#fff",
-          cursor: "pointer",
-          fontSize: "30px",
-          marginRight: "15px",
-        }}
-        className="icon"
-      />
+      {loginGoogle && userNameGoogle.photo ? (
+        <img
+          onClick={toggleFrame}
+          src={userNameGoogle.photo}
+          alt="account"
+          style={{
+            color: "#fff",
+            cursor: "pointer",
+            width: "30px",
+            height: "30px",
+            marginRight: "15px",
+            borderRadius: "50%"
+          }}
+        />
+      ) : (
+        <AccountCircleIcon
+          onClick={toggleFrame}
+          sx={{
+            color: "#fff",
+            cursor: "pointer",
+            fontSize: "30px",
+            marginRight: "15px",
+          }}
+          className="icon"
+        />
+      )}
+
       {/* Cuando el usuario haga click en el icono, se mostrara el cuadro */}
       {viewFrame && (
         <>
@@ -80,52 +116,46 @@ export function UserIcon() {
 
           {/* Confirmacion de inicio de sesion, si inicio correctamente, se muestra el nombre de usuario y una opción para editarlo */}
           {confirmLogin ? (
-            <div className="frame">
-              <span>{userName.name}</span>
-              <Button variant="outlined" onClick={handleButtonEdit}>
-                Editar
-              </Button>
-              <Button
-                variant="text"
-                onClick={() => (
-                  setAlertSingOff(true), setAlertShowSingOff(true)
-                )}
-                className="SignOff"
-              >
-                Cerrar sesión
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() => (
-                  setAlertDeleteAccount(true), setAlertShowDeleteAccount(true)
-                )}
-                className="button-delete-account"
-              >
-                Eliminar Cuenta
-              </Button>
-
-              {alertSingOff && (
-                <Alert
-                  show={alertShowSingOff}
-                  onHide={() => setAlertShowSingOff(false)}
-                  title="Cerrar sesión"
-                  text="¿Estás seguro que deseas cerrar sesión?"
-                  textButton="Cerrar Sesión"
-                  onClick={SingOffUser}
-                />
-              )}
-
-              {alertDeleteAccount && (
-                <Alert
-                  show={alertShowDeleteAccount}
-                  onHide={() => setAlertShowDeleteAccount(false)}
-                  title="Eliminar cuenta"
-                  text="¿Estás seguro que deseas eliminar la cuenta?"
-                  textButton="Eliminar cuenta"
-                  onClick={deleteUser}
-                />
-              )}
-            </div>
+            loginGoogle ? (
+              <div className="frame">
+                <span>{userNameGoogle.name}</span>
+                <Button
+                  variant="text"
+                  onClick={() => (
+                    setAlertSingOff(true), setAlertShowSingOff(true)
+                  )}
+                  className="SignOff"
+                  style={{ position: "relative", bottom: "10px" }}
+                >
+                  Cerrar sesión
+                </Button>
+              </div>
+            ) : (
+              <div className="frame">
+                <span>{userName.name}</span>
+                <Button variant="outlined" onClick={handleButtonEdit}>
+                  Editar
+                </Button>
+                <Button
+                  variant="text"
+                  onClick={() => (
+                    setAlertSingOff(true), setAlertShowSingOff(true)
+                  )}
+                  className="SignOff"
+                >
+                  Cerrar sesión
+                </Button>
+                <Button
+                  variant="contained"
+                  onClick={() => (
+                    setAlertDeleteAccount(true), setAlertShowDeleteAccount(true)
+                  )}
+                  className="button-delete-account"
+                >
+                  Eliminar Cuenta
+                </Button>
+              </div>
+            )
           ) : (
             // Si todavia no inicio sesión, se mostrara que no inicio sesión y le da la opcion para iniciar sesión
             <div
@@ -145,6 +175,28 @@ export function UserIcon() {
             </div>
           )}
         </>
+      )}
+
+      {alertSingOff && (
+        <Alert
+          show={alertShowSingOff}
+          onHide={() => setAlertShowSingOff(false)}
+          title="Cerrar sesión"
+          text="¿Estás seguro que deseas cerrar sesión?"
+          textButton="Cerrar Sesión"
+          onClick={SingOffUser}
+        />
+      )}
+
+      {alertDeleteAccount && (
+        <Alert
+          show={alertShowDeleteAccount}
+          onHide={() => setAlertShowDeleteAccount(false)}
+          title="Eliminar cuenta"
+          text="¿Estás seguro que deseas eliminar la cuenta?"
+          textButton="Eliminar cuenta"
+          onClick={deleteUser}
+        />
       )}
 
       {editUserConfirm && (

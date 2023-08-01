@@ -4,9 +4,10 @@ import "./Cart.css";
 import { CartProduct } from "./elementsCart/CartProduct.jsx";
 import { CompanyInfo } from "../../common/companyInfo/CompanyInfo.jsx";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthContext";
 import { ModalErrorLogin } from "../../common/ModalErrorLogin";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export function Cart() {
   const {
@@ -18,7 +19,7 @@ export function Cart() {
     verifyProductCart,
   } = useContext(CartContext);
 
-  const {confirmLogin} = useContext(AuthContext);
+  const { confirmLogin } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -32,13 +33,11 @@ export function Cart() {
       setTimeMessage(true);
     } else {
       setVerifyProductCart(false);
-      if(confirmLogin){
+      if (confirmLogin) {
         navigate("/checkout");
-      }
-      else{
-        console.log("Estoy en verificar si se registro")
+      } else {
         setShowConfirmLogin(true);
-        setModalShow(true)
+        setModalShow(true);
       }
     }
   };
@@ -59,6 +58,11 @@ export function Cart() {
 
   return (
     <article className="container-cart">
+      <Link to="/" style={{ color: "#000", position: "relative", left: "50px", top: "25px"}}>
+        <p>
+          <ArrowBackIcon /> VOLVER
+        </p>
+      </Link>
       <h3>Mi carrito</h3>
 
       <div className="container-cart-products">
@@ -94,7 +98,16 @@ export function Cart() {
             >
               Finalizar compra
             </Button>
-            {showConfirmLogin && <ModalErrorLogin show={modalShow} onHide={() => setModalShow(false)} text={"Debes iniciar sesión para finalizar la compra. Si no tenés una cuenta registrate"} title={"No pudiste finalizar la compra"}/>}
+            {showConfirmLogin && (
+              <ModalErrorLogin
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                text={
+                  "Debes iniciar sesión para finalizar la compra. Si no tenés una cuenta registrate"
+                }
+                title={"No pudiste finalizar la compra"}
+              />
+            )}
 
             {verifyProductCart && timeMessage && (
               <div className="text-ceroProducts">

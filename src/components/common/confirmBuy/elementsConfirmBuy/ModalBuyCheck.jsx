@@ -15,7 +15,7 @@ export function ModalBuyCheck(props) {
         top: 0,
         behavior: "smooth",
       });
-    }, 4000);
+    }, 2000);
   };
 
   useEffect(() => {

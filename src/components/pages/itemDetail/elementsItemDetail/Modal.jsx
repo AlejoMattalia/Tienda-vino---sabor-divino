@@ -49,7 +49,7 @@ export function Modal({ description }) {
                 {" "}
                 -&nbsp;
                 {description !== undefined &&
-                  description.split("\\n").map((line, index) => (
+                  description.split("\n").map((line, index) => (
                     <React.Fragment key={index}>
                       {index !== 0 && "- "}
                       {line}

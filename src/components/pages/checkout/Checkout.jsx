@@ -24,7 +24,7 @@ export function Checkout({ data }) {
 
   return (
     <section className="checkout-container">
-      <Link to="/cart" style={{ color: "#fff" }}>
+      <Link to="/cart" style={{ color: "#fff" }} className="exit">
         <p>
           <ArrowBackIcon /> VOLVER
         </p>
@@ -96,10 +96,6 @@ export function Checkout({ data }) {
             label="Fecha de vencimiento"
             variant="outlined"
             style={{ color: "#fff" }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="MM-AA"
             inputProps={{ maxLength: 24}}
             name="dueDate"
             onChange={formik.handleChange}
@@ -146,7 +142,7 @@ export function Checkout({ data }) {
                 <div style={{ height: "65px" }}>
                   <p className="name">{el.name}</p>
                   <div className="price-quantity">
-                    <p className="quantity">
+                    <p className="quantity-checkout">
                       Cantidad: <span>{el.quantity}</span>
                     </p>
                     <p className="price">

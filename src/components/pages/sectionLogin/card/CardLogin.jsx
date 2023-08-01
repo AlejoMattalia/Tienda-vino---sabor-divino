@@ -12,13 +12,15 @@ import { Phone } from "./elementsCard/Phone";
 export function CardLogin({
   titleCard,
   textBotton,
-  viewEmail,
+  viewName,
   viewPhone,
   confirmAccount,
   submitForm,
   emailVerify,
   nameUserVerify,
   timeMessage,
+  loginGoogle,
+  viewButtonGoogle,
 }) {
   //Valor iniciar del usuario
   const valueInitial = {
@@ -33,19 +35,19 @@ export function CardLogin({
     initialValues: valueInitial,
 
     validationSchema: Yup.object({
-      name: Yup.string()
-        .required("Debes ingresar un nombre de usuario")
-        .min(5, "El nombre debe tener al menos 5 caracteres")
-        .max(16, "El nombre debe tener menos de 16 caracteres"),
-
-      email:
-        viewEmail &&
+      name:
+        viewName &&
         Yup.string()
-          .required("Debes ingresar un email")
-          .matches(
-            /^.+@.+\..+$/,
-            'El correo electrónico debe tener un símbolo "@"'
-          ),
+          .required("Debes ingresar un nombre de usuario")
+          .min(5, "El nombre debe tener al menos 5 caracteres")
+          .max(16, "El nombre debe tener menos de 16 caracteres"),
+
+      email: Yup.string()
+        .required("Debes ingresar un email")
+        .matches(
+          /^.+@.+\..+$/,
+          'El correo electrónico debe tener un símbolo "@"'
+        ),
 
       password: Yup.string()
         .required("Debes ingresar una contraseña")
@@ -89,12 +91,14 @@ export function CardLogin({
         </div>
 
         <div className="inputs">
-          <NameUser
-            onChange={handleChange}
-            values={values.name}
-            errors={errors.name}
-            helperText={errors.name}
-          />
+          {viewName && (
+            <NameUser
+              onChange={handleChange}
+              values={values.name}
+              errors={errors.name}
+              helperText={errors.name}
+            />
+          )}
 
           {viewPhone && (
             <Phone
@@ -104,15 +108,12 @@ export function CardLogin({
               helperText={errors.phone}
             />
           )}
-
-          {viewEmail && (
-            <Email
-              onChange={handleChange}
-              values={values.email}
-              errors={errors.email}
-              helperText={errors.email}
-            />
-          )}
+          <Email
+            onChange={handleChange}
+            values={values.email}
+            errors={errors.email}
+            helperText={errors.email}
+          />
 
           <Password
             onChange={handleChange}
@@ -125,6 +126,17 @@ export function CardLogin({
         <Button className="button-register" variant="contained" type="submit">
           {textBotton}
         </Button>
+
+        {viewButtonGoogle && (
+          <button className="button-google" onClick={loginGoogle}>
+            {" "}
+            <img
+              src="https://res.cloudinary.com/dp0zorgdp/image/upload/v1690839560/Pagina%20de%20vinos/buscar_3_xsn1i3.png"
+              alt="google"
+            />{" "}
+            Iniciar sesión con Google
+          </button>
+        )}
 
         {(emailVerify === true || nameUserVerify === true) && timeMessage && (
           <div className="text-confirmRegister">

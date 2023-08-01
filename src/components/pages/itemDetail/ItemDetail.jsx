@@ -17,19 +17,33 @@ export function ItemDetail({ data }) {
     formattedPrice,
     formattedPriceDiscount,
     onAdd,
-    loadingSkeletor
+    loadingSkeletor,
   } = data;
 
   return (
     <>
       {/* Confirmar si los productos estan, sino mostrar cargando o directamente el error */}
-      {!error && loading && (
-        <Loading />
-      )}
-      {!error && !loading &&(
+      {!error && loading && <Loading />}
+      {!error && !loading && (
         <article className="container-itemDetail">
           <div className="container-itemDetail-imgInfo">
-            <img src={product.img} alt="img-vino" />
+            {loadingSkeletor ? (
+              <img src={product.img} alt="img-vino" />
+            ) : (
+              <Skeleton
+                variant="rectangular"
+                width={350}
+                height={350}
+                style={{
+                  backgroundColor: "rgb(65, 65, 65)",
+                  opacity: 0.1,
+                  margin: "40px 20px",
+                  border: "3px solid #B8860B",
+                  position: "relative",
+                  left: "30px",
+                }}
+              />
+            )}
 
             <div className="container-info-itemDetail">
               <section className="container-info-header-itemDetail">
@@ -58,7 +72,7 @@ export function ItemDetail({ data }) {
                           position: "relative",
                           left: "10px",
                           top: "2px",
-                          marginRight: "20px"
+                          marginRight: "20px",
                         }}
                       />
 
@@ -88,6 +102,8 @@ export function ItemDetail({ data }) {
                           color: "#dd5d30",
                           marginLeft: "12px",
                           fontSize: "20px",
+                          position: "relative",
+                          bottom: "5px",
                         }}
                       >
                         No hay stock

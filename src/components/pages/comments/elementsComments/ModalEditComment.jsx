@@ -63,12 +63,10 @@ export function ModalEditComment(props) {
       comment: data.comment || comment,
     };
 
-    console.log(information);
     if (information.value === value && information.comment === comment) {
       setDateEqual(true);
     } else {
       data.comment = "";
-      console.log("Enviar la edicion del comentairo a la base de datos");
         updateDoc(doc(dataBase, "comment", id), {
           value: information.value,
           comment: information.comment

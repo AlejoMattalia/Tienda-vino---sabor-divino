@@ -32,7 +32,7 @@ export function Register() {
   }, [timeMessage]);
 
   const handleSubmitForm = (data) => {
-
+    
     //Verificar si el email y name ya existen en la base de datos
     const verifyName = dataUsers.some((el)=> el.name === data.name);
     const verifyEmail = dataUsers.some((el)=> el.email === data.email);
@@ -85,7 +85,7 @@ export function Register() {
       <CardLogin
         titleCard="Registrarse"
         textBotton="Registrarse"
-        viewEmail={true}
+        viewName={true}
         viewPhone={true}
         confirmAccount={true}
         submitForm={handleSubmitForm}
@@ -94,6 +94,7 @@ export function Register() {
         nameUserVerify={nameUserVerify}
         timeMessage={timeMessage}
         setTimeMessage={setTimeMessage}
+        viewButtonGoogle={false}
       />
     </>
   );

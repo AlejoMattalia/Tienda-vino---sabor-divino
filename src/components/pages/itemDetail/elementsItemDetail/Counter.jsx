@@ -94,7 +94,8 @@ export function Counter({ product, onAdd, loadingSkeletor }) {
             }
           </Form.Select>
         ) : (
-          <span style={{ fontSize: "20px", color: "#000" }}>0</span>
+          <span style={{ fontSize: "20px", color: "#000", position: "relative",
+          top: "2px" }}>0</span>
         )
       ) : (
         <Skeleton

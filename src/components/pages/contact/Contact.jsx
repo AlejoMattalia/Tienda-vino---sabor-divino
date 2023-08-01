@@ -6,6 +6,7 @@ import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 
+
 export function Contact() {
   //Mostrar mapa cuando cargue
   const [loading, setLoading] = useState(false);
@@ -14,22 +15,6 @@ export function Contact() {
     setTimeout(() => {
       setLoading(true);
     }, 3000);
-
-    // const iframe = document.querySelector("iframe");
-
-    // const handleLoad = () => {
-    //   setLoading(false);
-    // };
-
-    // if (iframe) {
-    //   iframe.addEventListener("load", handleLoad);
-    // }
-
-    // return () => {
-    //   if (iframe) {
-    //     iframe.removeEventListener("load", handleLoad);
-    //   }
-    // };
   }, []);
 
   return (

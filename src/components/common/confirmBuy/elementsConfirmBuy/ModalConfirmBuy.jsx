@@ -9,9 +9,6 @@ export function ModalConfirmBuy(props) {
   const { totalProducts, cart, cardData, setOrderBuy } = useContext(CartContext);
   const { userName } = useContext(AuthContext);
 
-  console.log(userName)
-
-
   const handleButtonBuy = ()=>{
     props.setModalShowBuyCheck(true)
 
@@ -30,7 +27,6 @@ export function ModalConfirmBuy(props) {
 
     //Modificar el stock del producto
     cart.forEach((product)=>{
-      console.log(product)
       updateDoc(doc(dataBase, "products", product.id), {stock: product.stock - product.quantity})
     })
 

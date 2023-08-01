@@ -5,6 +5,8 @@ import { Card } from "../../common/card/Card";
 import { Error } from "../../layout/Error";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 
 export function ItemList({ data }) {
   const arrayLength = Array.from({ length: 3 });
@@ -21,6 +23,13 @@ export function ItemList({ data }) {
   return (
     <>
       <section className="container-itemList">
+
+      <Link to="/" style={{ color: "#fff", position: "absolute", left: "50px", top: "120px"}}>
+        <p>
+          <ArrowBackIcon /> VOLVER
+        </p>
+      </Link>
+
         <Grid container spacing={2} className="container-button-itemList">
           <Grid item xl={3}>
             <Link to={"/itemList"}>

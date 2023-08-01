@@ -5,22 +5,33 @@ import { useFirebase } from "../../../hooks/useFirebase.js";
 import "./Login.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { loginWithGoogle } from "../../../firebaseConfig.js";
 
 export function Login() {
   //Traemos variables del contexto Auth
-  const { userName, setUserName, setConfirmLogin } = useContext(AuthContext);
+  const {
+    userName,
+    setUserName,
+    setConfirmLogin,
+    setUserNameGoogle,
+    userNameGoogle,
+    setLoginGoogle
+  } = useContext(AuthContext);
   //Guardamos la informacion de los usuarios en la variable dataUser
-  const {data: dataUser} = useFirebase("users");
+  const { data: dataUser } = useFirebase("users");
   const [message, setMessage] = useState(undefined);
+  const [messageGoogle, setMessageGoogle] = useState(false);
 
   const submitForm = (data) => {
     //Traer al usuario para enviar el email
-    const user = dataUser.find((user)=>user.name.trim() === data.name.trim());
+    const user = dataUser.find(
+      (user) => user.email.trim() === data.email.trim()
+    );
 
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
       return (
-        user.name.trim() === data.name.trim() &&
+        user.email.trim() === data.email.trim() &&
         user.password.trim() === data.password.trim()
       );
     });
@@ -29,21 +40,61 @@ export function Login() {
     if (existsUser === true) {
       setUserName({
         ...userName,
-        name: data.name,
+        name: user.name,
         password: data.password,
-        email: user.email,
+        email: data.email,
         phone: user.phone,
-        id: user.id
+        id: user.id,
+      });
+
+      setUserNameGoogle({
+        ...userNameGoogle,
+        name: "",
+        email: "",
+        phone: "",
+        photo: "",
       });
 
       //Confirmacion verdadera para posteriormente utilizar los datos en la app
       setConfirmLogin(true);
       setMessage(true);
+      setLoginGoogle(false);
     } else {
       setMessage(false);
     }
   };
 
+  const loginGoogle = () => {
+    let res = loginWithGoogle();
+
+    res
+      .then((data) => {
+        let user = data.user;
+
+        setUserNameGoogle({
+          ...userNameGoogle,
+          name: user.displayName,
+          email: user.email,
+          phone: user.phoneNumber,
+          photo: user.photoURL,
+        });
+
+        setUserName({
+          ...userName,
+          name: "",
+          password: "",
+          email: "",
+          phone: "",
+          id: "",
+        });
+
+        setMessageGoogle(false);
+        setConfirmLogin(true);
+        setLoginGoogle(true);
+        setMessage(true);
+      })
+      .catch(() => setMessageGoogle(true));
+  };
   return (
     // Si los datos son correctos, se mustra en pantalla un aviso que se inicio correctamente y un boton donde te lleva al inicio
     <>
@@ -56,7 +107,7 @@ export function Login() {
                 variant="contained"
                 style={{ backgroundColor: "#B8860B" }}
                 onClick={() => {
-                  setMessage(undefined)
+                  setMessage(undefined);
 
                   setTimeout(() => {
                     window.scrollTo({
@@ -92,13 +143,32 @@ export function Login() {
         </>
       )}
 
+      {messageGoogle === true && (
+        <>
+          <div className="container-message">
+            <h1>Error no pudiste inciar sesión</h1>
+            <Button
+              variant="contained"
+              onClick={() => setMessageGoogle(false)}
+              style={{ backgroundColor: "#B8860B" }}
+            >
+              Volver a intentar
+            </Button>
+          </div>
+
+          <div className="background-message"></div>
+        </>
+      )}
+
       <CardLogin
         titleCard="Iniciar Sesión"
         textBotton="Iniciar Sesión"
-        viewEmail={false}
+        viewName={false}
         viewPhone={false}
         confirmAccount={false}
         submitForm={submitForm}
+        loginGoogle={loginGoogle}
+        viewButtonGoogle={true}
       />
     </>
   );
