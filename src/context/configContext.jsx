@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
+//Contexto
 export const ConfigContext = createContext();
 
 export function ConfigContextProvider({ children }) {

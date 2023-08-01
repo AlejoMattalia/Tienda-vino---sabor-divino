@@ -2,7 +2,7 @@ import "./App.css";
 import { AuthContextProvider } from "./context/AuthContext";
 import { BrowserRouter } from "react-router-dom";
 import { useContext } from "react";
-import { ConfigContext } from "./context/ConfigContext";
+import { ConfigContext } from "./context/configContext";
 import { CartContextProvider } from "./context/CartContext";
 import { AppRouter } from "./routes/AppRouter";
 

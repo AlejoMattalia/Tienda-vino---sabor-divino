@@ -9,7 +9,7 @@ import { Dropdown } from "./elementsNavBar/dropdown/Dropdown.jsx";
 import { UserIcon } from "./elementsNavBar/userIcon/UserIcon.jsx";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { ConfigContext } from "../../../context/ConfigContext";
+import { ConfigContext } from "../../../context/configContext";
 import { CartContext } from "../../../context/CartContext";
 import { AuthContext } from "../../../context/AuthContext";
 

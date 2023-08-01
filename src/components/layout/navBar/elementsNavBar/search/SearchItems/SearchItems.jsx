@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./SearchItems.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { useContext } from "react";
-import { ConfigContext } from "../../../../../../context/ConfigContext";
+import { ConfigContext } from "../../../../../../context/configContext";
 // import { useParams } from "react-router-dom";
 
 export function SearchItems({ searchItemsResults, input }) {

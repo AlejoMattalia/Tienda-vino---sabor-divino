@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import "../Cart.css";
 import { CartContext } from "../../../../context/CartContext";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ConfigContext } from "../../../../context/ConfigContext";
+import { ConfigContext } from "../../../../context/configContext";
 import { Link } from "react-router-dom";
 
 export function CartProduct() {

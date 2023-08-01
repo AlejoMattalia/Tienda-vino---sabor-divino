@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { NavBar } from "./NavBar";
-import { ConfigContext } from "../../../context/ConfigContext";
+import { ConfigContext } from "../../../context/configContext";
 
 export function NavBarContainer() {
   const [classUl, setClassUl] = useState("");
