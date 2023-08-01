@@ -7,6 +7,28 @@ import { collection, addDoc} from "firebase/firestore";
 import { dataBase } from "../../../../firebaseConfig";
 import { ModalErrorLogin } from "../../../common/ModalErrorLogin";
 import * as Yup from "yup";
+import { styled } from '@mui/material/styles';
+
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#fff',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#fff',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#fff',
+    },
+    '&:hover fieldset': {
+      borderColor: '#9e9e9e',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#fff',
+    },
+  },
+});
 
 
 export function AddComment() {
@@ -62,7 +84,7 @@ export function AddComment() {
           />
         </div>
 
-        <TextField
+        <CssTextField
           className="textArea-addComment"
           label="Deja tu comentario"
           multiline
@@ -73,6 +95,12 @@ export function AddComment() {
           value={values.comment}
           error={errors.comment}
           helperText={errors.comment}
+          InputLabelProps={{
+            style:{
+              color: "#fff"
+            }
+          }}
+          inputProps={{ style: { color: "#fff" } }}
         />
 
         <div className="container-button-comment">

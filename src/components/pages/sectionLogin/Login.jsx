@@ -91,9 +91,9 @@ export function Login() {
         setMessageGoogle(false);
         setConfirmLogin(true);
         setLoginGoogle(true);
-        setMessage(true);
       })
-      .catch(() => setMessageGoogle(true));
+      .catch(() => setMessageGoogle(true))
+      .finally(()=> setMessage(true))
   };
   return (
     // Si los datos son correctos, se mustra en pantalla un aviso que se inicio correctamente y un boton donde te lleva al inicio
