@@ -25,17 +25,14 @@ export function Login() {
   const submitForm = (data) => {
     //Traer al usuario para enviar el email
     const user = dataUser.find(
-      (user) => user.email.trim() === data.email.trim()
+      (user) => user.email?.trim() === data.email?.trim()
     );
-
-    console.log(data)
-    console.log(user)
 
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
       return (
-        user.email.trim() === data.email.trim() &&
-        user.password.trim() === data.password.trim()
+        user.email?.trim() === data.email?.trim() &&
+        user.password?.trim() === data.password?.trim()
       );
     });
 
