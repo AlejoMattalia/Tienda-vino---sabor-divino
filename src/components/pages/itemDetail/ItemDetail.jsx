@@ -3,7 +3,7 @@ import { Loading } from "../../layout/Loading";
 import { CompanyInfo } from "../../common/companyInfo/CompanyInfo.jsx";
 import "./ItemDetail.css";
 import { CarouselProducts } from "../../common/carousel/CarouselProducts";
-import { Counter } from "./elementsItemDetail/counter";
+import { Counter } from "./elementsItemDetail/Counter";
 import { Skeleton } from "@mui/material";
 
 export function ItemDetail({ data }) {
