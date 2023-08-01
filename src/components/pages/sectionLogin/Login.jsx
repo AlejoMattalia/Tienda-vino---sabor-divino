@@ -28,14 +28,15 @@ export function Login() {
       (user) => user.email.trim() === data.email.trim()
     );
 
+    console.log(data)
+    console.log(user)
+
     //Devuelve true si los datos que envio el usuario son iguales a los que se encuentra en el servidor
     const existsUser = dataUser.some((user) => {
-      if (user !== undefined && data !== undefined) {
-        return (
-          user.email.trim() === data.email.trim() &&
-          user.password.trim() === data.password.trim()
-        );
-      }
+      return (
+        user.email.trim() === data.email.trim() &&
+        user.password.trim() === data.password.trim()
+      );
     });
 
     //Si es true, guardar los datos en la varible que se encuentra en el contexto
