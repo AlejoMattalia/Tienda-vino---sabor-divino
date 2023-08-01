@@ -149,14 +149,13 @@ export function EditUser(props) {
     >
       <Modal.Header
         closeButton
-        style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}
       >
         <Modal.Title id="contained-modal-title-vcenter">
           Editar usuario
         </Modal.Title>
       </Modal.Header>
 
-      <Modal.Body style={{ background: "hsl(0, 0%, 8%)", color: "#fff" }}>
+      <Modal.Body>
         <form action="" className="form-container" onSubmit={handleSubmit}>
           <div className="divInput">
             <UserNameEdit
