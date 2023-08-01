@@ -4,6 +4,30 @@ import { useFormik } from "formik";
 import { Button, Rating, TextField, Typography } from "@mui/material";
 import { dataBase } from "../../../../firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";
+import { styled } from '@mui/material/styles';
+
+
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: '#fff',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: '#fff',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: '#fff',
+    },
+    '&:hover fieldset': {
+      borderColor: '#9e9e9e',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#fff',
+    },
+  },
+});
+
+
 
 export function ModalEditComment(props) {
   //   //LLamamos a los datos desde el contexto
@@ -125,7 +149,7 @@ export function ModalEditComment(props) {
             />
           </div>
 
-          <TextField
+          <CssTextField
             className="textArea-addComment"
             multiline
             label="Comentario"
@@ -136,6 +160,12 @@ export function ModalEditComment(props) {
             defaultValue={comment}
             error={errors.comment}
             helperText={errors.comment}
+            InputLabelProps={{
+              style:{
+                color: "#fff"
+              }
+            }}
+            inputProps={{ style: { color: "#fff" } }}
           />
 
           <div className="container-button-comment">

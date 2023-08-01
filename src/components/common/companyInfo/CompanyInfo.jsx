@@ -4,11 +4,20 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CommentIcon from "@mui/icons-material/Comment";
 import LocalBarIcon from "@mui/icons-material/LocalBar";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
+import { Link } from "react-router-dom";
 
 
 export function CompanyInfo() {
 
   //Diseño y visualizar datos de la empresa
+  const handleButtonExit = () => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 2000);
+  };
 
   return (
     <Grid className="grid-container" container rowSpacing={6} columnSpacing={{ xs: 1, sm: 2, md: 8 }}>
@@ -25,8 +34,8 @@ export function CompanyInfo() {
       <Grid className="grid-item" item xs={12} sm={6} md={3}>
         <CommentIcon className="icon-grid commentIcon" style={{fontSize: "50px"}}/>
         <div>
-          <p>Clientes Felices</p>
-          <a href="">Lee sus comentarios</a>
+          <p>Opiniones de clientes</p>
+          <Link to="/comments" onClick={handleButtonExit}>Lee sus comentarios</Link>
         </div>
       </Grid>
 
