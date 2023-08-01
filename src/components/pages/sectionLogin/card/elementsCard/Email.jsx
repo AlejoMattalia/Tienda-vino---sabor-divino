@@ -36,9 +36,9 @@ export function Email({ onChange, values, errors, helperText }) {
         helperText={helperText}
         inputProps={{ style: { color: "#fff" } }}
         InputLabelProps={{
-          style:{
-            color: "#fff"
-          }
+          style: {
+            color: "#fff",
+          },
         }}
       />
     </FormControl>
