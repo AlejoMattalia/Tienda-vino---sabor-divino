@@ -14,7 +14,7 @@ const CssTextField = styled(TextField)({
   },
 
   "& .MuiInput-underline:hover:before": {
-    borderBottomColor: "#ffff",
+    borderBottomColor: "#fff",
   },
 });
 
