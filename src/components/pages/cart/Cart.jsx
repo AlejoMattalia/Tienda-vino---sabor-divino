@@ -58,7 +58,7 @@ export function Cart() {
 
   return (
     <article className="container-cart">
-      <Link to="/" style={{ color: "#000", position: "relative", left: "50px", top: "25px"}}>
+      <Link to="/" style={{ color: "#000", position: "absolute", left: "50px", top: "110px"}}>
         <p>
           <ArrowBackIcon /> VOLVER
         </p>
