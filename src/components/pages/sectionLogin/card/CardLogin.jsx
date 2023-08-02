@@ -128,7 +128,7 @@ export function CardLogin({
         </Button>
 
         {viewButtonGoogle && (
-          <button className="button-google" onClick={loginGoogle}>
+          <button className="button-google" onClick={loginGoogle} type="button">
             {" "}
             <img
               src="https://res.cloudinary.com/dp0zorgdp/image/upload/v1690839560/Pagina%20de%20vinos/buscar_3_xsn1i3.png"
