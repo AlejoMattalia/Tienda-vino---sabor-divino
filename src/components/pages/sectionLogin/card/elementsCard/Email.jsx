@@ -26,7 +26,7 @@ export function Email({ onChange, values, errors, helperText }) {
         id="custom-css-outlined-input"
         label="Email"
         variant= "standard"
-        sx={{ borderBottom: "none" }}
+        sx={{ borderBottom: "none", color: "#fff" }}
         type="text"
         endAdornment={<InputAdornment position="end"></InputAdornment>}
         name="email"

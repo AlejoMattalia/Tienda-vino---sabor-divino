@@ -31,7 +31,7 @@ export function Password({ onChange, values, errors, helperText }) {
         id="standard-basic"
         label="Contraseña"
         variant="standard"
-        sx={{ borderBottom: "none" }}
+        sx={{ borderBottom: "none", color: "#fff" }}
         type="password"
         name="password"
         onChange={onChange}
