@@ -12,7 +12,7 @@ export function CommentsContainer() {
   const [selectedComment, setSelectedComment] = useState({id: "", name: "", value: "", comment: ""})
 
   //Traemos el userName para que el usuario pueda eliminar el comentario
-  const {userName} = useContext(AuthContext);
+  const {userName, userNameGoogle} = useContext(AuthContext);
 
 
   //Abir modal con el comentario completo
@@ -43,7 +43,8 @@ export function CommentsContainer() {
     setShowModalEditComment,
     showModalEditComment,
     setSelectedComment,
-    selectedComment
+    selectedComment,
+    userNameGoogle
   };
 
   

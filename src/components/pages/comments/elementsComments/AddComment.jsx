@@ -32,14 +32,15 @@ const CssTextField = styled(TextField)({
 
 
 export function AddComment() {
-  const { userName, confirmLogin } = useContext(AuthContext);
+  const { userName, userNameGoogle, confirmLogin,} = useContext(AuthContext);
   const [value, setValue] = useState(5);
   const [verifylogin, setVerifyLogin] = useState(false);
   const [modalShow, setModalShow] = useState(false)
 
   const onSubmit = (comment) => {
+
     const data = {
-      name: userName.name,
+      name: userName.name === "" ? userNameGoogle.name: userName.name,
       value,
       comment: comment.comment,
     };

@@ -19,8 +19,13 @@ export function Comments({ data }) {
     setShowModalEditComment,
     showModalEditComment,
     setSelectedComment,
-    selectedComment
+    selectedComment,
+    userNameGoogle
   } = data;
+
+
+  console.log(userName.name)
+  console.log(userNameGoogle.name)
 
   return (
     <section className="comments-container">
@@ -52,7 +57,7 @@ export function Comments({ data }) {
                         />
                       </div>
 
-                      {userName.name === el.name && (
+                      {(userName.name === el.name || userNameGoogle.name === el.name) &&(
                         <>
                           <IconButton
                             className="buttonDelete-comment"

@@ -68,6 +68,7 @@
     background-color: #e6e6e6;
     width: 90%;
     padding: 8px;
+    padding-top: none;
     font-size: 12px !important;
     word-wrap: break-word;
     border-radius: 20px;
@@ -76,11 +77,9 @@
 }
 
 .comment span {
-    margin-top: 20px;
     color: var(--mainColor);
     border-bottom: 2px solid var(--mainColor);
     position: relative;
-    top: 12px;
     left: 5px;
     cursor: pointer
 }
@@ -125,36 +124,6 @@
     font-size: 25px;
     color: var(--textColor);
 }
-/* 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-    color: #fff !important;
-}
-.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
-    color: #fff !important;
-}
-.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
-    color: #ffffff !important
-}
-
-.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root {
-    color: #fff !important
-}
-
-.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
-    color: #fff !important
-}
-
-.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
-    border-color: #fff !important;
-}
-
-.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: #fff !important;
-}
-
-.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
-    overflow: none !important;
-} */
 
 .container-button-comment {
     margin-top: 20px;
@@ -185,6 +154,7 @@
 
 .no-comments{
     position: relative;
+    top: 50px;
     left: 100px;
     font-size: 30px;
     color: #fff;
@@ -232,11 +202,19 @@
         justify-content: space-around;
         gap: 15px;
     }
+
+    .no-comments{
+        left: 25px;
+    }
 }
 
 @media (max-width: 990px){
     .section-comments {
         width: 60%;
+    }
+
+    .no-comments{
+        left: 10px;
     }
 }
 
@@ -254,6 +232,10 @@
 
     .section-comments {
         width: 100%;
+    }
+
+    .no-comments{
+        left: 0px;
     }
 }
 
@@ -339,6 +321,10 @@
 
     .buttonEdit-comment{
         left: 50px;
+    }
+
+    .no-comments{
+        font-size: 25px;
     }
 }
 
