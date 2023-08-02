@@ -93,7 +93,7 @@ export function Login() {
         setLoginGoogle(true);
       })
       .catch(() => setMessageGoogle(true))
-      .finally(()=> setMessage(true))
+      .finally(()=> messageGoogle === false && setMessage(true))
   };
   return (
     // Si los datos son correctos, se mustra en pantalla un aviso que se inicio correctamente y un boton donde te lleva al inicio
