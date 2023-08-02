@@ -64,7 +64,7 @@ export function ItemList({ data }) {
         {/* Confirmar si los productos estan, sino mostrar cargando o directamente el error */}
         {!error && (
           <div className="container-cards-elements">
-            {loading === false ? (
+            {loading === true ? (
               products.length !== 0 ? (
                 products.map((el) => {
                   const formattedPrice = el.price.toLocaleString();
