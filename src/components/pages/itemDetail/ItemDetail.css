@@ -119,6 +119,10 @@
     text-align: center;
 }
 
+.skeletor-itemDetail{
+    width: 350px;
+}
+
 
 @media (max-width: 1050px){
     .container-itemDetail-imgInfo img{
@@ -132,6 +136,10 @@
 
 
 @media (max-width: 780px){
+    .skeletor-itemDetail{
+        left: 0 !important;
+    }
+
     .container-itemDetail-imgInfo{
         display: flex;
         flex-direction: column;
@@ -154,11 +162,20 @@
         height: 300px;
     }
 
+    .skeletor-itemDetail{
+        width: 300px;
+    }
+
     .text-maxStock{
         margin: 10px 0px 0px 22px;
     }
     
+    .text-view-action{
+        position: relative;
+        right: 30px;
+    }
 }
+
 
 @media (max-width: 340px){
     .button-addCart{

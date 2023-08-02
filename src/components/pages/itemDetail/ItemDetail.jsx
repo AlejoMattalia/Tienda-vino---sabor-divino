@@ -31,9 +31,9 @@ export function ItemDetail({ data }) {
               <img src={product.img} alt="img-vino" />
             ) : (
               <Skeleton
+                className="skeletor-itemDetail"
                 variant="rectangular"
-                width={350}
-                height={350}
+                height="350px"
                 style={{
                   backgroundColor: "rgb(65, 65, 65)",
                   opacity: 0.1,

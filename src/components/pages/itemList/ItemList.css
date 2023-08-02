@@ -58,6 +58,10 @@
         margin-right: 250px;
     }
 
+    .skeletor-itemList{
+        margin-left: 250px !important;
+    }
+
     .productsNull {
         position: relative;
         left: 120px;
@@ -68,6 +72,10 @@
 
     .container-cards-elements {
         margin-right: 200px;
+    }
+
+    .skeletor-itemList{
+        margin-left: 200px !important;
     }
 
     .productsNull {
@@ -81,6 +89,10 @@
         margin-right: 150px;
     }
 
+    .skeletor-itemList{
+        margin-left: 150px !important;
+    }
+
     .productsNull {
         left: 80px;
     }
@@ -92,6 +104,11 @@
         margin-right: 120px;
 
     }
+
+    .skeletor-itemList{
+        margin-left: 120px !important;
+    }
+
     .productsNull {
         left: 60px;
     }
@@ -101,6 +118,10 @@
 
     .container-cards-elements {
         margin-right: 80px;
+    }
+
+    .skeletor-itemList{
+        margin-left: 80px !important;
     }
 
     .productsNull {

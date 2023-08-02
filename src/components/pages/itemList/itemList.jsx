@@ -64,7 +64,7 @@ export function ItemList({ data }) {
         {/* Confirmar si los productos estan, sino mostrar cargando o directamente el error */}
         {!error && (
           <div className="container-cards-elements">
-            {loading === true ? (
+            {loading === false ? (
               products.length !== 0 ? (
                 products.map((el) => {
                   const formattedPrice = el.price.toLocaleString();
@@ -87,6 +87,7 @@ export function ItemList({ data }) {
                 return (
                   <div key={e} style={{marginTop: "20px"}}>
                     <Skeleton
+                      className="skeletor-itemList"
                       variant="rectangular"
                       width={280}
                       height={200}
@@ -98,6 +99,7 @@ export function ItemList({ data }) {
                     />
 
                     <Skeleton
+                      className="skeletor-itemList"
                       variant="text"
                       style={{
                         backgroundColor: "#000",
@@ -108,6 +110,7 @@ export function ItemList({ data }) {
                     />
 
                     <Skeleton
+                      className="skeletor-itemList"
                       variant="text"
                       style={{
                         backgroundColor: "#000",
@@ -118,6 +121,7 @@ export function ItemList({ data }) {
                     />
 
                     <Skeleton
+                      className="skeletor-itemList"
                       variant="text"
                       style={{
                         backgroundColor: "#000",
